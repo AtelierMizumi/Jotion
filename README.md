@@ -39,10 +39,14 @@ npm i
 ```
 
 ### Setup .env file
+### You need to create Convex, Clerk and Edge-Store account to get needed keys
+### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
+### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
 
 
 ```js
-# Deployment used by `npx convex dev`
+# Create an a file named .env.local at the root directory of your repo 
+# This will be used for `npx convex dev`
 CONVEX_DEPLOYMENT=
 CONVEX_DEPLOY_KEY=
 NEXT_PUBLIC_CONVEX_URL=
