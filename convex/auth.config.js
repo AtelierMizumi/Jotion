@@ -1,7 +1,7 @@
 export default {
   providers: [
     {
-      domain: "https://whole-cow-35.clerk.accounts.dev",
+      domain: "https://composed-rodent-21.clerk.accounts.dev",
       applicationID: "convex",
     }
   ]
