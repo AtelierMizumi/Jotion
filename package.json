@@ -12,7 +12,6 @@
     "@blocknote/core": "^0.9.4",
     "@blocknote/react": "^0.9.4",
     "@clerk/clerk-react": "^4.26.3",
-    "@clerk/nextjs": "^5.7.3",
     "@edgestore/react": "^0.1.7",
     "@edgestore/server": "^0.1.7",
     "@radix-ui/react-alert-dialog": "^1.0.5",
