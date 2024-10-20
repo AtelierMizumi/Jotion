@@ -35,17 +35,23 @@ git clone https://github.com/evildevill/Jotion.git
 ### Install packages
 
 ```shell
-npm i
+npm install
 ```
 
 ### Setup .env file
+### You need to create Convex, Clerk and Edge-Store account to get needed keys
+### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
+### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
 
 
 ```js
-# Deployment used by `npx convex dev`
+# Read .env.sample.local for instructions
+# This will be used for `npx convex dev`
 CONVEX_DEPLOYMENT=
 CONVEX_DEPLOY_KEY=
 NEXT_PUBLIC_CONVEX_URL=
+
+AUTH_DOMAIN=
 
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
