@@ -1,8 +1,8 @@
 export default {
   providers: [
     {
-      domain: "https://whole-cow-35.clerk.accounts.dev",
-      applicationID: "convex",
+      domain: process.env.AUTH_DOMAIN,
+      applicationID: process.env.APPLICATION_ID,
     }
   ]
 }
