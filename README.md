@@ -35,7 +35,7 @@ git clone https://github.com/evildevill/Jotion.git
 ### Install packages
 
 ```shell
-npm i
+npm install
 ```
 
 ### Setup .env file
@@ -45,11 +45,14 @@ npm i
 
 
 ```js
-# Create an a file named .env.local at the root directory of your repo 
+# Read .env.sample.local for instructions
 # This will be used for `npx convex dev`
 CONVEX_DEPLOYMENT=
 CONVEX_DEPLOY_KEY=
 NEXT_PUBLIC_CONVEX_URL=
+
+AUTH_DOMAIN=
+APPLICATION_ID=
 
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
