@@ -1,3 +1,5 @@
+"use client";
+
 import { useTheme } from "next-themes";
 import "@blocknote/core/fonts/inter.css";
 import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
