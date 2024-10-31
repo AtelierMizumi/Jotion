@@ -10,8 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@blocknote/core": "^0.9.4",
-    "@blocknote/react": "^0.9.4",
+    "@blocknote/core": "^0.18.0",
+    "@blocknote/mantine": "^0.18.1",
+    "@blocknote/react": "^0.18.1",
     "@clerk/clerk-react": "^4.26.3",
     "@edgestore/react": "^0.1.7",
     "@edgestore/server": "^0.1.7",
@@ -22,6 +23,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
+    "@tiptap/react": "^2.9.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
