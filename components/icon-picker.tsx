@@ -37,8 +37,10 @@ export const IconPicker = ({
       </PopoverTrigger>
       <PopoverContent className="p-0 w-full border-none shadow-none">
         <EmojiPicker
-          height={350}
+          height={360}
+          width={480}
           theme={theme}
+          lazyLoadEmojis={true}
           onEmojiClick={(data) => onChange(data.emoji)}
         />
       </PopoverContent>
