@@ -66,7 +66,7 @@ export const Heading = () => {
               Your browser does not support the video tag.
             </video>
           </div>
-       1</div>
+       </div>
     </div>
   )
 }
