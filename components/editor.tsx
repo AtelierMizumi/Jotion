@@ -6,7 +6,6 @@ import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { useCreateBlockNote } from "@blocknote/react";
-
 import { useEdgeStore } from "@/lib/edgestore";
 import { useEffect } from "react";
 
@@ -19,6 +18,7 @@ interface EditorProps {
 const Editor = ({
   initialContent,
   onChange,
+  editable = true,
 }: EditorProps) => {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
@@ -39,18 +39,32 @@ const Editor = ({
   });
 
   useEffect(() => {
-    const unsubscribe = editor.onChange(() => {
-      const documentJSON = JSON.stringify(editor.document);
-      onChange(documentJSON);
-    });
-    return unsubscribe;
-  }, [editor, onChange]);
+    if (editable) {
+      let debounceTimeout: NodeJS.Timeout;
+
+      const handleChange = () => {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+          const documentJSON = JSON.stringify(editor.document);
+          onChange(documentJSON);
+        }, 1500); // 1.5-second debounce delay
+      };
+
+      editor.onChange(handleChange);
+      // Clean up timeout and unsubscribe from changes
+      return () => {
+        clearTimeout(debounceTimeout);
+      };
+    }
+  }, [editor, onChange, editable]);
 
   return (
     <div>
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}
+        editable={editable}
       />
     </div>
   );
