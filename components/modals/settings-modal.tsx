@@ -37,7 +37,7 @@ export const SettingsModal = () => {
           <div className="flex flex-col gap-y-1">
             <Label>User account</Label>
             <span className="text-[0.8rem] text-muted-foreground">
-              Customize your account's information
+              Customize your account&apos;s information
             </span>
           </div>
           <div className="relative z-[2050]">
