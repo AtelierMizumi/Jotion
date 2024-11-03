@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { useParams } from "next/navigation";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader
-} from "@/components/ui/dialog";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle 
+} from "@/components/ui/dialog"; // Import DialogTitle
 import { useCoverImage } from "@/hooks/use-cover-image";
 import { SingleImageDropzone } from "@/components/single-image-dropzone";
 import { useEdgeStore } from "@/lib/edgestore";
@@ -55,9 +55,9 @@ export const CoverImageModal = () => {
     <Dialog open={coverImage.isOpen} onOpenChange={coverImage.onClose}>
       <DialogContent>
         <DialogHeader>
-          <h2 className="text-center text-lg font-semibold">
+          <DialogTitle>
             Cover Image
-          </h2>
+          </DialogTitle>
         </DialogHeader>
         <SingleImageDropzone
           className="w-full outline-none"

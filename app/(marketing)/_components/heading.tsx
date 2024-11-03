@@ -58,7 +58,7 @@ export const Heading = () => {
             )}
           </div>
           </div>
-
+          
           {/* Right Column for Video */}
           <div className="flex w-full md:w-7/12 p-4">
             <video className="w-full h-auto" autoPlay muted>
