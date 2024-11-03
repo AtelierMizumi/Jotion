@@ -15,7 +15,7 @@ export const Carousel = () => {
                             Everything you need to do your best work.
                         </p>
                     </div>
-                    <img
+                    <Image
                         alt="Illustration showing how blocks can be formatted"
                         loading="lazy"
                         width="768"
@@ -50,14 +50,16 @@ export const Carousel = () => {
         </div>
         <div className="mt-20 pt-20 flex w-full">
             <div className="relative h-12 w-full lg:h-20">
-                <img alt=""
-                loading="lazy" 
-                decoding="async" 
-                data-nimg="fill" 
-                className="object-cover" 
-                style={{ position:"absolute",height:"100%",width:"100%",left:"0",top:0,right:0,bottom:0,color:"transparent"}} 
-                sizes="100vw" 
-                src="./footer.svg"></img>
+                <Image 
+                    alt=""
+                    loading="lazy" 
+                    decoding="async" 
+                    data-nimg="fill" 
+                    className="object-cover" 
+                    style={{ position:"absolute",height:"100%",width:"100%",left:"0",top:0,right:0,bottom:0,color:"transparent"}} 
+                    sizes="100vw" 
+                    src="./footer.svg"
+                />
             </div>
         </div>
     </div>

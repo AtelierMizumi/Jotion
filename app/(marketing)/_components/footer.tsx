@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { Github, Facebook } from "lucide-react"
 
 export const Footer = () => {
@@ -18,7 +19,7 @@ export const Footer = () => {
         </a>
       </div>  
       <div className="absolute bottom-0 right-0"> {/* Added flex-shrink-0 to prevent scaling */}
-        <img
+        <Image
           src="./shao-sitting.png"
           width={360} // Keep width but allow scaling
           alt="Shaolin"
