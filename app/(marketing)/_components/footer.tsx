@@ -24,7 +24,7 @@ export const Footer = () => {
           src="/shao-sitting.png"
           width="320"
           height="272"
-          alt="Shaolin"
+          alt="Shaolin having a rest"
           className="object-contain max-w-full" // Add scaling properties
         />
       </div>

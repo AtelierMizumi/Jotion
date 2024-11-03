@@ -51,7 +51,7 @@ export const Carousel = () => {
         <div className="mt-20 pt-20 flex w-full">
             <div className="relative h-12 w-full lg:h-20">
                 <Image 
-                    alt=""
+                    alt="Footer vector graphic"
                     loading="lazy"
                     width="768"
                     height="500"
