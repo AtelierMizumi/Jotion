@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { Github, Facebook } from "lucide-react"
+import { Autour_One } from "next/font/google"
 
 export const Footer = () => {
   return (
@@ -18,10 +20,11 @@ export const Footer = () => {
         </a>
       </div>  
       <div className="absolute bottom-0 right-0"> {/* Added flex-shrink-0 to prevent scaling */}
-        <img
-          src="./shao-sitting.png"
-          width={360} // Keep width but allow scaling
-          alt="Shaolin"
+        <Image
+          src="/shao-sitting.png"
+          width="320"
+          height="272"
+          alt="Shaolin having a rest"
           className="object-contain max-w-full" // Add scaling properties
         />
       </div>
