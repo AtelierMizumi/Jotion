@@ -21,7 +21,7 @@ export const Toolbar = ({
   initialData,
   preview
 }: ToolbarProps) => {
-  const inputRef = useRef<ElementRef<"textarea">>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(initialData.title);
 

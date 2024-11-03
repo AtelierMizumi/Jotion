@@ -10,7 +10,7 @@ import {
   Trash
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { ElementRef, useEffect, useRef, useState } from "react";
+import { ElementRef, useEffect, useRef, useState, useCallback } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
@@ -46,13 +46,31 @@ export const Navigation = () => {
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
+  const resetWidth = useCallback(() => {
+    if (sidebarRef.current && navbarRef.current) {
+      setIsCollapsed(false);
+      setIsResetting(true);
+  
+      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
+      navbarRef.current.style.setProperty(
+        "width",
+        isMobile ? "0" : "calc(100% - 240px)"
+      );
+      navbarRef.current.style.setProperty(
+        "left",
+        isMobile ? "100%" : "240px"
+      );
+      setTimeout(() => setIsResetting(false), 300);
+    }
+  }, [isMobile]);  
+
   useEffect(() => {
     if (isMobile) {
       collapse();
     } else {
       resetWidth();
     }
-  }, [isMobile]);
+  }, [isMobile, resetWidth]);
 
   useEffect(() => {
     if (isMobile) {
@@ -91,24 +109,6 @@ export const Navigation = () => {
     document.removeEventListener("mouseup", handleMouseUp);
   };
 
-  const resetWidth = () => {
-    if (sidebarRef.current && navbarRef.current) {
-      setIsCollapsed(false);
-      setIsResetting(true);
-
-      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
-      navbarRef.current.style.setProperty(
-        "width",
-        isMobile ? "0" : "calc(100% - 240px)"
-      );
-      navbarRef.current.style.setProperty(
-        "left",
-        isMobile ? "100%" : "240px"
-      );
-      setTimeout(() => setIsResetting(false), 300);
-    }
-  };
-
   const collapse = () => {
     if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(true);
@@ -137,7 +137,7 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
+          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[1000]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -199,7 +199,7 @@ export const Navigation = () => {
       <div
         ref={navbarRef}
         className={cn(
-          "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          "absolute top-0 z-[2000] left-60 w-[calc(100%-240px)]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "left-0 w-full"
         )}
