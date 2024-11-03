@@ -41,6 +41,7 @@ export const Carousel = () => {
                     autoPlay
                     muted
                     playsInline
+                    loop
                 >
                     <source src="./jotion-about-2.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
