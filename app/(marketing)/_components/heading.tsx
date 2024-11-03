@@ -62,7 +62,7 @@ export const Heading = () => {
           {/* Right Column for Video */}
           <div className="flex w-full md:w-7/12 p-4">
             <video className="w-full h-auto" autoPlay muted>
-              <source src="./hero-illustration.mp4" type="video/mp4" />
+              <source src="/hero-illustration.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

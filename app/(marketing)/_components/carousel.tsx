@@ -25,7 +25,7 @@ export const Carousel = () => {
                         className="h-auto w-full"
                         style={{ color:"transparent"}}
                         sizes="100vw"
-                        src="./jotion-about-1.png"
+                        src="/jotion-about-1.png"
                     />
                 </div>
                 <div>
@@ -43,7 +43,7 @@ export const Carousel = () => {
                     playsInline
                     loop
                 >
-                    <source src="./jotion-about-2.mp4" type="video/mp4" />
+                    <source src="/jotion-about-2.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -52,13 +52,15 @@ export const Carousel = () => {
             <div className="relative h-12 w-full lg:h-20">
                 <Image 
                     alt=""
-                    loading="lazy" 
+                    loading="lazy"
+                    width="768"
+                    height="500"
                     decoding="async" 
                     data-nimg="fill" 
                     className="object-cover" 
                     style={{ position:"absolute",height:"100%",width:"100%",left:"0",top:0,right:0,bottom:0,color:"transparent"}} 
                     sizes="100vw" 
-                    src="./footer.svg"
+                    src="/footer.svg"
                 />
             </div>
         </div>
