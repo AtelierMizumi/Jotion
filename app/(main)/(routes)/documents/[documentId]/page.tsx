@@ -11,41 +11,34 @@ import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface DocumentIdPageProps {
-  params: Promise<{
+  params: {
     documentId: Id<"documents">;
-  }>;
-};
+  };
+}
 
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
-  const [documentId, setDocumentId] = useState<Id<"documents"> | null>(null);
-
-  useEffect(() => {
-    const fetchParams = async () => {
-      const resolvedParams = await params; // Unwrap the params Promise
-      setDocumentId(resolvedParams.documentId);
-    };
-    fetchParams();
-  }, [params]);
+  const { documentId } = params; // Directly destructure documentId from params
+  const [id, setId] = useState<Id<"documents"> | null>(documentId || null);
 
   const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
 
   const document = useQuery(
     api.documents.getById,
-    documentId ? { documentId } : "skip" // Use "skip" instead of null
+    id ? { documentId: id } : "skip" // Use "skip" instead of null
   );
 
   const update = useMutation(api.documents.update);
 
   const onChange = (content: string) => {
-    if (documentId) {
+    if (id) {
       update({
-        id: documentId,
+        id,
         content
       });
     }
   };
 
-  if (documentId === null || document === undefined) {
+  if (id === null || document === undefined) {
     // Render loading skeleton while params or document data are still loading
     return (
       <div>
