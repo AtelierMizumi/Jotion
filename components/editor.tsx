@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import "@blocknote/core/fonts/inter.css";
-import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
+import { BlockNoteEditor, getBlockNoteExtensions, PartialBlock } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { useCreateBlockNote } from "@blocknote/react";

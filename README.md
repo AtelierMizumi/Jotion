@@ -1,15 +1,15 @@
-# Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind
+# Fullstack Notion Clone: Next.js 14, React, Convex, Tailwind
 
-This is a repository for Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind
+This is a repository for Fullstack Notion Clone: Next.js 14, React, Convex, Tailwind
 
 Key Features:
 
-- Real-time database  🔗 
-- Notion-style editor 📝 
+- Real-time database  🔗
+- Notion-style editor 📝
 - Light and Dark mode 🌓
 - Infinite children documents 🌲
 - Trash can & soft delete 🗑️
-- Authentication 🔐 
+- Authentication 🔐
 - File upload
 - File deletion
 - File replacement
@@ -24,12 +24,12 @@ Key Features:
 
 ### Prerequisites
 
-**Node version 18.x.x**
+**Node version 20.x.x**
 
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/evildevill/Jotion.git
+git clone https://github.com/AtelierMizumi/Jotion
 ```
 
 ### Install packages
