@@ -3,6 +3,7 @@
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 
+import { Loading } from "@/components/Loading";
 import { Spinner } from "@/components/spinner";
 import { SearchCommand } from "@/components/search-command";
 
@@ -17,8 +18,8 @@ const MainLayout = ({
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center">
-        <Spinner size="lg" />
+      <div className="h-full flex items-center justify-center" style={{background:"#262626"}}>
+        <Loading />
       </div>
     );
   }

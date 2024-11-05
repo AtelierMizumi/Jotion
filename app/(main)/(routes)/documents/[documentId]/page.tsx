@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery } from "convex/react";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -18,7 +18,7 @@ interface DocumentIdPageProps {
 
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   const { documentId } = params; // Directly destructure documentId from params
-  const [id, setId] = useState<Id<"documents"> | null>(documentId || null);
+  const [id] = useState<Id<"documents"> | null>(documentId || null);
 
   const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
 
@@ -26,17 +26,26 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
     api.documents.getById,
     id ? { documentId: id } : "skip" // Use "skip" instead of null
   );
-
+  
   const update = useMutation(api.documents.update);
 
-  const onChange = (content: string) => {
-    if (id) {
-      update({
-        id,
-        content
-      });
-    }
-  };
+  // add debounce of 1.5s to avoid too many updates
+  const onChange = useMemo(() => {
+    let timeout: NodeJS.Timeout | null = null;
+    return (content: string) => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => {
+        if (id) {
+          update({
+            id,
+            content
+          });
+        }
+      }, 1500);
+    };
+  }, [id]);
 
   if (id === null || document === undefined) {
     // Render loading skeleton while params or document data are still loading
