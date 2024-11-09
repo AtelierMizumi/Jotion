@@ -1,51 +1,20 @@
 "use client";
 
-import { BlockNoteEditor } from "@blocknote/core";
+import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import * as Y from "yjs";
 import { LiveblocksYjsProvider } from "@liveblocks/yjs";
-import { Liveblocks } from "@liveblocks/node";
-import { useRoom, useSelf } from "@liveblocks/react/suspense";
+import { useRoom, RoomProvider } from "@liveblocks/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { Avatars } from "@/components/Avatars";
 import styles from "./CollaborativeEditor.module.css";
 import { Button } from "@mantine/core";
 import { SunMedium, Moon } from "lucide-react";
-import { NextRequest } from "next/server";
 import { useUser } from "@clerk/clerk-react";
 import { useEdgeStore } from "@/lib/edgestore";
-
-// Collaborative text editor with simple rich text, live cursors, and live avatars
-export function CollaborativeEditor() {
-  const room = useRoom();
-  const [doc, setDoc] = useState<Y.Doc>();
-  const [provider, setProvider] = useState<any>();
-
-  // Set up Liveblocks Yjs provider
-  useEffect(() => {
-    const yDoc = new Y.Doc();
-    const yProvider = new LiveblocksYjsProvider(room, yDoc);
-    setDoc(yDoc);
-    setProvider(yProvider);
-
-    return () => {
-      yDoc?.destroy();
-      yProvider?.destroy();
-    };
-  }, [room]);
-
-  if (!doc || !provider) {
-    return null;
-  }
-
-  return <BlockNote doc={doc} provider={provider} />;
-}
-
-type EditorProps = {
-  doc: Y.Doc;
-  provider: any;
-};
+import { useTheme } from "next-themes";
+import { ClientSideSuspense } from "@liveblocks/react";
 
 const COLORS = [
   "#E57373",
@@ -58,47 +27,73 @@ const COLORS = [
   "#7986CB",
 ];
 
-const userColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+type BlockNoteProps = {
+  onChange: (value: string) => void;
+  initialContent?: string;
+  editable?: boolean;
+  doc: Y.Doc;
+  provider: any;
+};
 
-const handleUpload = async (file: File) => {
-  const response = await useEdgeStore().edgestore.publicFiles.upload({
-    file
-  });
-  return response.url;
-}
+const BlockNote: React.FC<BlockNoteProps> = ({
+  onChange,
+  initialContent,
+  editable = true,
+  doc,
+  provider,
+}) => {
+  const { user } = useUser();
+  const { edgestore } = useEdgeStore();
+  const { resolvedTheme } = useTheme();
+  const userRandomColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
-const liveblocks = new Liveblocks({
-  secret: process.env.LIVEBLOCKS_SECRET_KEY!,
-});
-
-function BlockNote({ doc, provider }: EditorProps) {
-  // Get user info from Liveblocks authentication endpoint
-  const userInfo = useSelf((me) => me.info);
+  const handleUpload = async (file: File) => {
+    const response = await edgestore.publicFiles.upload({
+      file,
+    });
+    return response.url;
+  };
 
   const editor: BlockNoteEditor = useCreateBlockNote({
+    initialContent: initialContent
+      ? (JSON.parse(initialContent) as PartialBlock[])
+      : undefined,
+    uploadFile: handleUpload,
     collaboration: {
-      
       provider,
-      // Where to store BlockNote data in the Y.Doc:
       fragment: doc.getXmlFragment("document-store"),
-
-      // Information for this user
-      // This is used to display the user's cursor and avatar
       user: {
-        name: useUser().user?.fullName || "Anonymous",
-        // random color that work for both light and dark themes
-        color: userColor,
+        name: user?.fullName || "Anonymous",
+        color: userRandomColor,
       },
     },
   });
-
-  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const changeTheme = useCallback(() => {
     const newTheme = theme === "light" ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", newTheme);
     setTheme(newTheme);
   }, [theme]);
+
+  useEffect(() => {
+    if (editable && onChange) {
+      let debounceTimeout: NodeJS.Timeout;
+
+      const handleChange = () => {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          const documentJSON = JSON.stringify(editor.document);
+          onChange(documentJSON);
+        }, 1500);
+      };
+
+      editor.onChange(handleChange);
+      return () => {
+        clearTimeout(debounceTimeout);
+      };
+    }
+  }, [editor, onChange, editable]);
 
   return (
     <div className={styles.container}>
@@ -109,44 +104,84 @@ function BlockNote({ doc, provider }: EditorProps) {
           onClick={changeTheme}
           aria-label="Switch Theme"
         >
-          {theme === "dark" ? (
-            <SunMedium size={20} />
-          ) : (
-            <Moon size={20} />
-          )}
+          {theme === "dark" ? <SunMedium size={20} /> : <Moon size={20} />}
         </Button>
         <Avatars />
       </div>
       <div className={styles.editorPanel}>
         <BlockNoteView
-          editor={editor}
           className={styles.editorContainer}
-          theme={theme}
+          editor={editor}
+          theme={resolvedTheme === "dark" ? "dark" : "light"}
         />
       </div>
     </div>
   );
+};
+
+interface CollaborativeEditorProps {
+  onChange: (content: string) => void;
+  initialContent?: string;
+  roomId: string;
 }
 
+const Editor = ({
+  onChange,
+  initialContent,
+}: Omit<CollaborativeEditorProps, "roomId">) => {
+  const room = useRoom();
+  const { user } = useUser();
+  const [doc, setDoc] = useState<Y.Doc>();
+  const [provider, setProvider] = useState<any>();
 
+  useEffect(() => {
+    const yDoc = new Y.Doc();
+    const yProvider = new LiveblocksYjsProvider(room, yDoc);
+    setDoc(yDoc);
+    setProvider(yProvider);
 
-export async function POST(request: NextRequest) {
-  // Get the current user's unique id from your database
-  const userId = useUser().user?.id;
+    room.updatePresence({
+      cursor: null,
+    });
 
-  // Create a session for the current user
-  // userInfo is made available in Liveblocks presence hooks, e.g. useOthers
-  const session = liveblocks.prepareSession(`user-${userId}`, {
-    userInfo: {
-      name: useUser().user?.fullName || "Anonymous",
-      // random color that work for both light and dark themes
-      color: userColor,
-    },
-  });
+    return () => {
+      yDoc?.destroy();
+      yProvider?.destroy();
+    };
+  }, [room]);
 
-  session.allow(`documents:*`, session.READ_ACCESS);
+  if (!doc || !provider) {
+    return null;
+  }
 
-  // Authorize the user and return the result
-  const { body, status } = await session.authorize();
-  return new Response(body, { status });
-}
+  return (
+    <BlockNote
+      doc={doc}
+      provider={provider}
+      onChange={onChange}
+      initialContent={initialContent}
+    />
+  );
+};
+
+const CollaborativeEditor = ({
+  onChange,
+  initialContent,
+  roomId,
+}: CollaborativeEditorProps) => {
+  const { user } = useUser();
+  return (
+    <RoomProvider
+      id={roomId}
+      initialPresence={{
+        cursor: null,
+      }}
+    >
+      <ClientSideSuspense fallback={<div>Loading...</div>}>
+        {() => <Editor onChange={onChange} initialContent={initialContent} />}
+      </ClientSideSuspense>
+    </RoomProvider>
+  );
+};
+
+export default CollaborativeEditor;

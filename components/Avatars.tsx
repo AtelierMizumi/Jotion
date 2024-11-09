@@ -1,5 +1,16 @@
 import { useOthers, useSelf } from "@liveblocks/react/suspense";
+import Image from "next/image";
 import styles from "./Avatars.module.css";
+
+// default Avatar if Name and Picture are not provided
+const userDefault = {
+  id: "Anonymous",
+  info: {
+    name: "Anonymous",
+    color: "#D583F0",
+    picture: "https://liveblocks.io/avatars/avatar-1.png",
+  },
+};
 
 export function Avatars() {
   const users = useOthers();
@@ -28,8 +39,9 @@ export function Avatars() {
 export function Avatar({ picture, name }: { picture: string; name: string }) {
   return (
     <div className={styles.avatar} data-tooltip={name}>
-      <img
+      <Image
         src={picture}
+        alt={name}
         className={styles.avatar_picture}
         data-tooltip={name}
       />

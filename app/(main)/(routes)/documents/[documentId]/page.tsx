@@ -2,8 +2,10 @@
 
 import { useMutation, useQuery } from "convex/react";
 import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 
+import { CollaborativeEditorProps } from "@/types";
+import { Providers } from "@/components/providers/liveblocks-provider";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { Toolbar } from "@/components/toolbar";
@@ -17,19 +19,25 @@ interface DocumentIdPageProps {
 }
 
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
-  const { documentId } = params; // Directly destructure documentId from params
+  const { documentId } = params;
   const [id] = useState<Id<"documents"> | null>(documentId || null);
 
-  const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
+  const CollaborativeEditor = useMemo(
+    () =>
+      dynamic<CollaborativeEditorProps>(
+        () => import("@/components/CollaborativeEditor"),
+        { ssr: false },
+      ),
+    [],
+  );
 
   const document = useQuery(
     api.documents.getById,
-    id ? { documentId: id } : "skip" // Use "skip" instead of null
+    id ? { documentId: id } : "skip",
   );
-  
+
   const update = useMutation(api.documents.update);
 
-  // add debounce of 1.5s to avoid too many updates
   const onChange = useMemo(() => {
     let timeout: NodeJS.Timeout | null = null;
     return (content: string) => {
@@ -40,15 +48,14 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
         if (id) {
           update({
             id,
-            content
+            content,
           });
         }
       }, 1500);
     };
-  }, [id]);
+  }, [id, update]);
 
   if (id === null || document === undefined) {
-    // Render loading skeleton while params or document data are still loading
     return (
       <div>
         <Cover.Skeleton />
@@ -73,7 +80,15 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
-        <Editor onChange={onChange} initialContent={document.content} />
+        <Providers>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CollaborativeEditor
+              roomId={documentId}
+              initialContent={document.content}
+              onChange={onChange}
+            />
+          </Suspense>
+        </Providers>
       </div>
     </div>
   );

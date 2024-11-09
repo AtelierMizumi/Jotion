@@ -32,12 +32,12 @@ export const Heading = () => {
               <div className="flex space-x-4">
                 <Button asChild variant="default" style={{fontWeight:"bold"}}>
                   <Link href="/documents">
-                    Head to your Jotion
+                    Head to Jotion
                   </Link>
                 </Button>
                 <Button asChild variant="ghost" style={{background: "#0582ff", color:"white", fontWeight:"bold"}}>
                   <Link href="https://jotion-steel.vercel.app/preview/j57005j5q4vh43gzy29s6m6rg5737a8b">
-                    See sample notes
+                    See sample
                   </Link>
                 </Button>
               </div>
