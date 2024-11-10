@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
-import { Check, Copy, Globe } from "lucide-react";
+import { Check, Copy, CircleDot, AlertCircle, Cloudy } from "lucide-react";
 
 import { Doc } from "@/convex/_generated/dataModel";
 import {
@@ -74,14 +74,16 @@ export const Publish = ({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size="sm" variant="ghost">
-          Publish 
-          {initialData.isPublished && (
-            <Globe
-              className="text-sky-500 w-4 h-4 ml-2"
-            />
-          )}
-        </Button>
+        {initialData.isPublished ? (
+          <Button size="sm" variant="secondary" className="text-sky-500 color-sky">
+            Published
+            <CircleDot className="w-4 h-4 ml-2" />
+          </Button>
+        ) : (
+          <Button size="sm" variant="secondary">
+            Publish
+          </Button>
+        )}
       </PopoverTrigger>
       <PopoverContent 
         className="w-72" 
@@ -92,7 +94,7 @@ export const Publish = ({
         {initialData.isPublished ? (
           <div className="space-y-4">
             <div className="flex items-center gap-x-2">
-              <Globe className="text-sky-500 animate-pulse h-4 w-4" />
+              <AlertCircle className="text-sky-500 animate-pulse h-4 w-4" />
               <p className="text-xs font-medium text-sky-500">
                 This note is live on web.
               </p>
@@ -126,7 +128,7 @@ export const Publish = ({
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <Globe
+            <Cloudy
               className="h-8 w-8 text-muted-foreground mb-2"
             />
             <p className="text-sm font-medium mb-2">

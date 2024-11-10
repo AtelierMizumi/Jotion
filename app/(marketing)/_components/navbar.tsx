@@ -18,7 +18,7 @@ export const Navbar = () => {
 
   return (
     <div className={cn(
-      "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full p-6",
+      "z-32 bg-background dark:bg-[#1F1F1F] fixed flex items-center w-full p-4",
       scrolled && "border-b shadow-sm"
     )}>
       <Logo />
@@ -33,11 +33,6 @@ export const Navbar = () => {
                 Log in
               </Button>
             </SignInButton>
-            <SignInButton mode="modal">
-              <Button size="sm">
-                Get Jotion free
-              </Button>
-            </SignInButton>
           </>
         )}
         {isAuthenticated && !isLoading && (
@@ -47,9 +42,7 @@ export const Navbar = () => {
                 Enter Jotion
               </Link>
             </Button>
-            <UserButton
-              afterSignOutUrl="/"
-            />
+            <UserButton />
           </>
         )}
         <ModeToggle />

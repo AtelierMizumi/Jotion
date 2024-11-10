@@ -1,7 +1,7 @@
 export default {
   providers: [
     {
-      domain: "https://unique-midge-19.clerk.accounts.dev",
+      domain: process.env.AUTH_DOMAIN,
       applicationID: "convex",
     }
   ]
