@@ -25,19 +25,19 @@ import { optionsGroups } from "@/components/prompts";
 import { Copy as CopyIcon } from "lucide-react";
 import { motion as FramerMotion } from "framer-motion";
 import { BlockNoteEditor } from "@blocknote/core";
-import { useBlockNoteEditor, useComponentsContext } from "@blocknote/react";
 const motion = FramerMotion;
 
 export function FloatingToolbarAi({
+  editor,
   state,
   setState,
   onClose,
 }: {
+  editor: BlockNoteEditor;
   state: "default" | "ai" | "closed";
   setState: (state: "default" | "ai" | "closed") => void;
   onClose: () => void;
 }) {
-  const editor = useBlockNoteEditor();
   const textContent = editor?.getSelectedText();
   const [input, setInput] = useState("");
 
@@ -135,14 +135,15 @@ ${textContent || ""}
           type: "spring",
           duration: 0.25,
         }}
-        className="isolate rounded-lg border shadow-xl border-gray-300/75 bg-card pointer-events-auto overflow-hidden origin-top-left"
+        className="isolate rounded-lg border shadow-xl mt-2 border-gray-300/75 bg-card pointer-events-auto overflow-hidden origin-top-left"
+        style={{maxWidth: "calc(100% - 8rem)", minWidth: "280px"}}
       >
         {lastAiMessage ? (
           // If the AI has streamed in content, show it
           <motion.div
             layout="position"
             transition={{ duration: 0 }}
-            className="flex items-start border-b border-gray-300  gap-1.5"
+            className="flex items-start border-b border-gray-300 gap-1.5"
           >
             <div className="flex-grow whitespace-pre-wrap max-h-[130px] overflow-y-auto select-none relative px-3 py-2 pr-10">
               <div className="sticky w-full top-1 right-0">
@@ -182,7 +183,7 @@ ${textContent || ""}
             // Save text editor selection before entering input
             editor
           }}
-          className="w-full relative"
+          className="w-full w-max-75 relative"
         >
           <input
             className="block w-full p-2 pl-3 rounded-lg outline-none disabled:transition-colors"
@@ -253,7 +254,7 @@ ${textContent || ""}
               // Prevent clicks outside of items from removing selection
               e.preventDefault();
             }}
-            className="z-10 relative mt-1 rounded-lg border shadow-2xl border-gray-300/75 bg-card max-w-[210px] max-h-[360px] overflow-y-auto pointer-events-auto"
+            className="z-10 relative mt-1 rounded-lg border shadow-2xl border-gray-300/75 bg-card max-w-[210px] max-h-[400px] overflow-y-auto pointer-events-auto"
           >
             <Command.List tabIndex={0} className="rounded-lg">
               {lastAiMessage && !page ? (
@@ -334,7 +335,7 @@ ${textContent || ""}
                       onClose();
                     }}}
                   >
-                    Add below paragraph
+                    Add below
                   </CommandItem>
 
                   <Command.Separator />

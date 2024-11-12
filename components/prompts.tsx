@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Wand, SpellCheck2, Scissors, Expand, Languages, Type, List, Info, WandIcon } from "lucide-react";
+import { Wand2, ArrowDownNarrowWide, ArrowUpWideNarrow, SpellCheck, Languages, ScrollText, List, HelpCircle } from "lucide-react";
 
 type OptionChild = {
   text: string;
@@ -52,22 +52,22 @@ export const optionsGroups: OptionGroup[] = [
       {
         text: "Improve writing",
         prompt: "Improve the quality of the text",
-        icon: <Wand className="h-3.5" />,
+        icon: <Wand2 className="h-3.5" />,
       },
       {
         text: "Fix mistakes",
         prompt: "Fix any typos or general errors in the text",
-        icon: <SpellCheck2 className="h-full -ml-0.5" />,
+        icon: <SpellCheck className="h-full -ml-0.5" />,
       },
       {
         text: "Simplify",
         prompt: "Shorten the text, simplifying it",
-        icon: <Scissors className="h-full" />,
+        icon: <ArrowUpWideNarrow className="h-full" />,
       },
       {
         text: "Add more detail",
         prompt: "Lengthen the text, going into more detail",
-        icon: <Expand className="h-full" />,
+        icon: <ArrowDownNarrowWide className="h-full" />,
       },
     ],
   },
@@ -93,12 +93,12 @@ export const optionsGroups: OptionGroup[] = [
           text: style,
           prompt: `Change text into ${style} style`,
         })),
-        icon: <Type className="h-full" />,
+        icon: <ScrollText className="h-full" />,
       },
       {
         text: "Explain",
         prompt: "Explain what the text is about",
-        icon: <Info className="h-full" />,
+        icon: <HelpCircle className="h-full" />,
       },
     ],
   },
