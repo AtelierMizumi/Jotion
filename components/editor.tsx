@@ -41,16 +41,24 @@ const Editor = ({
   });
 
   useEffect(() => {
-    if (!editable) return;
+    if (editable) {
+      let debounceTimeout: NodeJS.Timeout;
 
-    const debounceTimeout = setTimeout(() => {
-      const documentJSON = JSON.stringify(editor.document, null, 2);
-      onChange(documentJSON);
-    }, 1500); // 1.5-second debounce delay
+      const handleChange = () => {
+        clearTimeout(debounceTimeout);
 
-    editor.onChange(() => clearTimeout(debounceTimeout));
+        debounceTimeout = setTimeout(() => {
+          const documentJSON = JSON.stringify(editor.document);
+          onChange(documentJSON);
+        }, 1500); // 1.5-second debounce delay
+      };
 
-    return () => clearTimeout(debounceTimeout);
+      editor.onChange(handleChange);
+      // Clean up timeout and unsubscribe from changes
+      return () => {
+        clearTimeout(debounceTimeout);
+      };
+    }
   }, [editor, onChange, editable]);
 
   // Updated spawnAIButton with custom debounce and animations
