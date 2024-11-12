@@ -1,18 +1,19 @@
-# Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind
+# Fullstack Notion Clone: Next.js 14, React, Convex, Tailwind
 
-This is a repository for Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind
+This is a repository for Fullstack Notion Clone: Next.js 14, React, Convex, Tailwind
 
 Key Features:
 
-- Real-time database  🔗 
-- Notion-style editor 📝 
+- Real-time database  🔗
+- Notion-style editor 📝
+- AI text generation features ✨
 - Light and Dark mode 🌓
 - Infinite children documents 🌲
 - Trash can & soft delete 🗑️
-- Authentication 🔐 
-- File upload
-- File deletion
-- File replacement
+- Authentication 🔐
+- File upload ☁️
+- File deletion 🗑️
+- File replacement 🔧
 - Icons for each document (changes in real-time) 🌠
 - Expandable sidebar ➡️🔀⬅️
 - Full mobile responsiveness 📱
@@ -22,14 +23,14 @@ Key Features:
 - Cover image of each document 🖼️
 - Recover deleted files 🔄📄
 
-### Prerequisites
+## Prerequisites
 
-**Node version 18.x.x**
+**Node version 20.x.x**
 
-### Cloning the repository
+## Cloning the repository
 
 ```shell
-git clone https://github.com/evildevill/Jotion.git
+git clone https://github.com/AtelierMizumi/Jotion
 ```
 
 ### Install packages
@@ -39,10 +40,12 @@ npm install
 ```
 
 ### Setup .env file
-### You need to create Convex, Clerk and Edge-Store account to get needed keys
-### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
-### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
 
+### You need to create Convex, Clerk and Edge-Store account to get needed keys
+
+### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
+
+### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
 
 ```js
 # Read .env.sample.local for instructions
@@ -58,9 +61,11 @@ CLERK_SECRET_KEY=
 
 EDGE_STORE_ACCESS_KEY=
 EDGE_STORE_SECRET_KEY=
+
+OPENAI_API_KEY=
 ```
 
-### Setup Convex
+### Setup Convex to generate NoSQL schematics
 
 ```shell
 npx convex dev

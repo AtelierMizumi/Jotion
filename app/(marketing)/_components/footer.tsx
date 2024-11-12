@@ -19,15 +19,14 @@ export const Footer = () => {
         </Button>
         </a>
       </div>  
-      <div className="absolute bottom-0 right-0"> {/* Added flex-shrink-0 to prevent scaling */}
-        <Image
-          src="/shao-sitting.png"
-          width="320"
-          height="272"
-          alt="Shaolin having a rest"
-          className="object-contain max-w-full" // Add scaling properties
-        />
-      </div>
+      <Image
+        src="/shao-sitting.png"
+        loading="lazy"
+        width="260"
+        height="200"
+        alt="Shaolin having a rest"
+        className="object-contain absolute bottom-0 right-0" // Add scaling properties
+      />
     </div>
 
   )
