@@ -2,26 +2,47 @@
 
 import { useTheme } from "next-themes";
 import "@blocknote/core/fonts/inter.css";
-import { BlockNoteEditor, getBlockNoteExtensions, PartialBlock } from "@blocknote/core";
+import { BlockNoteEditor, PartialBlock, Block, BlockNoteSchema, defaultBlockSpecs, StyleSchema, InlineContentSchema, BlockSchema } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
-import { useCreateBlockNote } from "@blocknote/react";
+import {
+  BlockTypeSelectItem,
+  FormattingToolbar,
+  FormattingToolbarController,
+  blockTypeSelectItems,
+  useCreateBlockNote,
+ } from "@blocknote/react";
+import { FloatingToolbarAi } from "./FloatingToolbarAi";
+import { AlertCircleIcon } from "lucide-react";
+import { Alert } from "./alert";
 import { useEdgeStore } from "@/lib/edgestore";
-import { useEffect } from "react";
-
+import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 interface EditorProps {
   onChange: (value: string) => void;
   initialContent?: string;
   editable?: boolean;
 };
 
-const Editor = ({
+const schema = BlockNoteSchema.create({
+  blockSpecs: {
+    // Adds all default blocks.
+    ...defaultBlockSpecs,
+    // Adds the Alert block.
+    alert: Alert,
+    ai: Ai
+  },
+});
+
+const Editor = forwardRef<{
+  getEditor: () => BlockNoteEditor;
+}, EditorProps>(({
   initialContent,
   onChange,
   editable = true,
-}: EditorProps) => {
+}, ref) => {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
+  const [blocks, setBlocks] = useState<Block[]>([]);
 
   const handleUpload = async (file: File) => {
     const response = await edgestore.publicFiles.upload({ 
@@ -30,9 +51,9 @@ const Editor = ({
     return response.url;
   }
 
-  const editor: BlockNoteEditor = useCreateBlockNote({
-    initialContent:
-      initialContent 
+  const editor = useCreateBlockNote({
+    schema,
+    initialContent: initialContent 
       ? JSON.parse(initialContent) as PartialBlock[] 
       : undefined,
     uploadFile: handleUpload
@@ -60,14 +81,33 @@ const Editor = ({
   }, [editor, onChange, editable]);
 
   return (
-    <div>
-      <BlockNoteView
-        editor={editor}
-        theme={resolvedTheme === "dark" ? "dark" : "light"}
-        editable={editable}
-      />
-    </div>
+    <BlockNoteView
+      editor={editor}
+      formattingToolbar={false}
+      sideMenu={false}
+      theme={resolvedTheme === "dark" ? "dark" : "light"}
+      editable={editable}
+    >
+    <FormattingToolbarController
+        formattingToolbar={() => (
+          <FormattingToolbar
+            blockTypeSelectItems={[
+              ...blockTypeSelectItems(editor.dictionary),
+              {
+                name: "Alert",
+                type: "alert",
+                icon: () => <AlertCircleIcon size={16}/>,
+                isSelected: (block) => block.type === "alert",
+              } satisfies BlockTypeSelectItem,
+            ]}
+          />
+        )}
+     />
+    </BlockNoteView>
   );
-}
+});
+
+Editor.displayName = "Editor";
+
 
 export default Editor;
