@@ -69,24 +69,16 @@ const Editor = forwardRef<{
   });
 
   useEffect(() => {
-    if (editable) {
-      let debounceTimeout: NodeJS.Timeout;
+    if (!editable) return;
 
-      const handleChange = () => {
-        clearTimeout(debounceTimeout);
+    const debounceTimeout = setTimeout(() => {
+      const documentJSON = JSON.stringify(editor.document);
+      onChange(documentJSON);
+    }, 1500); // 1.5-second debounce delay
 
-        debounceTimeout = setTimeout(() => {
-          const documentJSON = JSON.stringify(editor.document);
-          onChange(documentJSON);
-        }, 1500); // 1.5-second debounce delay
-      };
+    editor.onChange(() => clearTimeout(debounceTimeout));
 
-      editor.onChange(handleChange);
-      // Clean up timeout and unsubscribe from changes
-      return () => {
-        clearTimeout(debounceTimeout);
-      };
-    }
+    return () => clearTimeout(debounceTimeout);
   }, [editor, onChange, editable]);
 
   return (
@@ -98,54 +90,24 @@ const Editor = forwardRef<{
     >
     <FormattingToolbarController
         formattingToolbar={() => (
-          <FormattingToolbar>
-            <AIButton key={"customButton"} />
-            <BlockTypeSelect key={"blockTypeSelect"} items={blockTypeSelectItems(editor.dictionary)} />
-            <FileCaptionButton key={"fileCaptionButton"} />
-            <FileReplaceButton key={"replaceFileButton"} />
- 
-            <BasicTextStyleButton
-              basicTextStyle={"bold"}
-              key={"boldStyleButton"}
-            />
-            <BasicTextStyleButton
-              basicTextStyle={"italic"}
-              key={"italicStyleButton"}
-            />
-            <BasicTextStyleButton
-              basicTextStyle={"underline"}
-              key={"underlineStyleButton"}
-            />
-            <BasicTextStyleButton
-              basicTextStyle={"strike"}
-              key={"strikeStyleButton"}
-            />
-
-            <BasicTextStyleButton
-              key={"codeStyleButton"}
-              basicTextStyle={"code"}
-            />
- 
-            <TextAlignButton
-              textAlignment={"left"}
-              key={"textAlignLeftButton"}
-            />
-            <TextAlignButton
-              textAlignment={"center"}
-              key={"textAlignCenterButton"}
-            />
-            <TextAlignButton
-              textAlignment={"right"}
-              key={"textAlignRightButton"}
-            />
- 
-            <ColorStyleButton key={"colorStyleButton"} />
- 
-            <NestBlockButton key={"nestBlockButton"} />
-            <UnnestBlockButton key={"unnestBlockButton"} />
- 
-            <CreateLinkButton key={"createLinkButton"} />
-          </FormattingToolbar>
+            <FormattingToolbar>
+            <AIButton key="customButton" />
+            <BlockTypeSelect key="blockTypeSelect" items={blockTypeSelectItems(editor.dictionary)} />
+            <FileCaptionButton key="fileCaptionButton" />
+            <FileReplaceButton key="replaceFileButton" />
+            <BasicTextStyleButton basicTextStyle="bold" key="boldStyleButton" />
+            <BasicTextStyleButton basicTextStyle="italic" key="italicStyleButton" />
+            <BasicTextStyleButton basicTextStyle="underline" key="underlineStyleButton" />
+            <BasicTextStyleButton basicTextStyle="strike" key="strikeStyleButton" />
+            <BasicTextStyleButton basicTextStyle="code" key="codeStyleButton" />
+            <TextAlignButton textAlignment="left" key="textAlignLeftButton" />
+            <TextAlignButton textAlignment="center" key="textAlignCenterButton" />
+            <TextAlignButton textAlignment="right" key="textAlignRightButton" />
+            <ColorStyleButton key="colorStyleButton" />
+            <NestBlockButton key="nestBlockButton" />
+            <UnnestBlockButton key="unnestBlockButton" />
+            <CreateLinkButton key="createLinkButton" />
+            </FormattingToolbar>
         )}
      />
     </BlockNoteView>

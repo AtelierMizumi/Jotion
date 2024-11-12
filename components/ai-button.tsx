@@ -1,12 +1,6 @@
-import {
-    useBlockNoteEditor,
-    useComponentsContext,
-    useEditorContentOrSelectionChange,
-    useEditorSelectionChange,
-  } from "@blocknote/react";
-  import "@blocknote/mantine/style.css";
-  import { useState } from "react";
-  import { FloatingToolbarAi } from "./FloatingToolbarAi"; // Adjust the import path as needed
+import "@blocknote/mantine/style.css";
+import { useState } from "react";
+import { FloatingToolbarAi } from "./FloatingToolbarAi";
 import { SparkleIcon } from "lucide-react";
   
   // Custom Formatting Toolbar Button to toggle blue text & background color.

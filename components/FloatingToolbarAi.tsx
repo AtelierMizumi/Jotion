@@ -12,7 +12,8 @@ import { continueConversation } from "@/app/actions/ai";
 import { readStreamableValue } from "ai/rsc";
 import * as React from "react";
 import { Command } from "cmdk";
-import { Replace as ReplaceIcon } from "lucide-react";
+import { Replace as ReplaceIcon, TextCursor } from "lucide-react";
+import { ArrowRightCircle } from "lucide-react";
 import { TextCursor as InsertInlineIcon } from "lucide-react";
 import { ArrowLeft as BackIcon } from "lucide-react";
 import { RefreshCw as RestartIcon } from "lucide-react";
@@ -20,11 +21,11 @@ import { Settings as OptionsIcon } from "lucide-react";
 import { Trash2 as RubbishIcon } from "lucide-react";
 import { Pilcrow as InsertParagraphIcon } from "lucide-react";
 import { Sparkles as SparklesIcon } from "lucide-react";
-import { ArrowRightCircle as ContinueIcon } from "lucide-react";
 import { optionsGroups } from "@/components/prompts";
 import { Copy as CopyIcon } from "lucide-react";
 import { motion as FramerMotion } from "framer-motion";
 import { BlockNoteEditor } from "@blocknote/core";
+import { useBlockNoteEditor, useComponentsContext } from "@blocknote/react";
 const motion = FramerMotion;
 
 export function FloatingToolbarAi({
@@ -36,10 +37,8 @@ export function FloatingToolbarAi({
   setState: (state: "default" | "ai" | "closed") => void;
   onClose: () => void;
 }) {
-  const editorRef = useRef<{ getEditor: () => BlockNoteEditor }>(null);
-  const editor = editorRef.current?.getEditor();
-
-  const textContent = Selection.toString();
+  const editor = useBlockNoteEditor();
+  const textContent = editor?.getSelectedText();
   const [input, setInput] = useState("");
 
   // Current state of components
@@ -191,9 +190,9 @@ ${textContent || ""}
             placeholder={aiState === "loading" ? "Writing…" : "Custom prompt…"}
             onMouseDown={() => {
                 // Save text editor selection before entering input
-                const selection = editor?.getSelection();
+                const selection = editor?.getSelectedText();
                 if (selection) {
-                localStorage.setItem("savedSelection", JSON.stringify(selection));
+                  localStorage.setItem("savedSelection", JSON.stringify(selection));
                 }
             }}
             onMouseUp={(e) => {
@@ -268,22 +267,22 @@ ${textContent || ""}
                       }
                     
                       // Replace currently selected block content
-                      const selection = editor?.getSelection();
-                        if (selection && editor != undefined) {
+                      const selection = editor?.getSelection()?.blocks.map(block => block.id);
+                      if (selection && editor != undefined) {
                         const selectedBlock = editor.getSelection();
-                        
+                          
                         if (selectedBlock) {
                           const blocksToReplace = selectedBlock.blocks;
                           const blockIdentifiers = blocksToReplace.map(block => block.id);
                           
                           const newBlock = {
-                          ...selectedBlock,
-                          content: lastAiMessage.content
+                              ...selectedBlock,
+                              content: lastAiMessage.content
                           };
 
                           editor.replaceBlocks(blockIdentifiers, [newBlock]);
                         }
-                        }
+                      }
                     
                       setPages([]);
                       setState("default");
@@ -317,7 +316,6 @@ ${textContent || ""}
                       }
 
                       // Insert into a new paragraph after the current one
-            
                       if (editor != undefined) {
                         const selectedBlock = editor.getSelection();
                         if (selectedBlock != undefined) {
@@ -346,7 +344,7 @@ ${textContent || ""}
                     <>
                       <Command.Group heading="Modify further">
                         <CommandItem
-                          icon={<ContinueIcon className="h-full" />}
+                          icon={<ArrowRightCircle className="h-full" />}
                           onSelect={() => {
                             submitPrompt(`Start with this text and continue. Output this text at the start: 
 
