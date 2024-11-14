@@ -23,9 +23,11 @@ Key Features:
 - Cover image of each document 🖼️
 - Recover deleted files 🔄📄
 
+Try it out from [here](https://jotion-stell.vercel.app)
+
 ## Prerequisites
 
-**Node version 20.x.x**
+### Node version 23.x.x
 
 ## Cloning the repository
 
@@ -46,6 +48,8 @@ npm install
 ### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
 
 ### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
+
+### If you want the AI button feature to be enabled, you must have a valid OpenAPI key
 
 ```js
 # Read .env.sample.local for instructions
