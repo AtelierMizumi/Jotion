@@ -1,24 +1,24 @@
 <div align=center>
 
-# Jotion Note Taking Webapp
+# Ứng dụng Ghi chú Jotion
 
 [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=jotion-steel)](https://jotion-steel.vercel.app)
 ![GitHub License](https://img.shields.io/github/license/AtelierMizumi/Jotion)
-[![JavaScript](https://img.shields.io/badge/Typescript-95.7%25-blue)](https://github.com/m4tthi3u/Jotion)
-[![Javascript](https://img.shields.io/badge/Javascript-3%25-yellow)](https://github.com/m4tthi3u/Jotion)
-[![CSS](https://img.shields.io/badge/CSS-1.3%25-purple)](https://github.com/m4tthi3u/Jotion)
+[![JavaScript](https://img.shields.io/badge/Typescript-95.7%25-blue)](https://github.com/AtelierMizumi/Jotion)
+[![Javascript](https://img.shields.io/badge/Javascript-3%25-yellow)](https://github.com/AtelierMizumi/Jotion)
+[![CSS](https://img.shields.io/badge/CSS-1.3%25-purple)](https://github.com/AtelierMizumi/Jotion)
 
-This is a repository for Fullstack Notion Clone using Next.js 14, React, Convex, Tailwind
+Đây là kho lưu trữ cho bản sao Notion sử dụng Next.js 14, React, Convex, Tailwind
 
 </div>
 
-### Key Features:
+### Tính năng chính:
 
-- Real-time database  🔗
-- Notion-style editor 📝
-- AI text generation features ✨
-- Light and Dark mode 🌓
-- Infinite children documents 🌲
+- Cơ sở dữ liệu thời gian thực 🔗
+- Trình soạn thảo kiểu Notion 📝
+- Tính năng tạo văn bản bằng AI ✨
+- Chế độ Sáng và Tối 🌓
+- Tài liệu con không giới hạn 🌲
 - Trash can & soft delete 🗑️
 - Authentication 🔐
 - File upload ☁️
@@ -45,6 +45,8 @@ Try it out from [here](https://jotion-stell.vercel.app)
 - **Github:** Version control and code management
 - **ChatGPT:** AI✨ for text generation
 
+### Screenshots
+
 ## 📸 Screenshots
 
 <div align="center">
@@ -54,11 +56,13 @@ Try it out from [here](https://jotion-stell.vercel.app)
 | ![Landing Page](screenshots/preview-1.png) | **Landing Page**<br/>Place to greet user with basic information about the app |
 | ![User Management](screenshots/preview-2.png) | **User Management**<br/>Secure and feature rich user account management |
 | ![Note Management](screenshots/preview-3.png) | **Note management**<br/>Place to store all your notes, lectures, to-do and more |
-| ![AI Text Generation](screenshots/preview-4.png) | **AI Text Generation**<br/>Do more than just writing with integrated Artifical Inteligence |
+| ![AI Text Generation](screenshots/preview-4.png) | **AI Text Generation**<br/>Do more than just writing with Artifical Inteligence |
 
 </div>
 
 # Installation
+
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
