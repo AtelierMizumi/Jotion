@@ -1,8 +1,18 @@
-# Fullstack Notion Clone: Next.js 14, React, Convex, Tailwind
+<div align=center>
 
-This is a repository for Fullstack Notion Clone: Next.js 14, React, Convex, Tailwind
+# Jotion Note Taking Webapp
 
-Key Features:
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=jotion-steel)](https://jotion-steel.vercel.app)
+![GitHub License](https://img.shields.io/github/license/AtelierMizumi/Jotion)
+[![JavaScript](https://img.shields.io/badge/Typescript-95.7%25-blue)](https://github.com/m4tthi3u/Jotion)
+[![Javascript](https://img.shields.io/badge/Javascript-3%25-yellow)](https://github.com/m4tthi3u/Jotion)
+[![CSS](https://img.shields.io/badge/CSS-1.3%25-purple)](https://github.com/m4tthi3u/Jotion)
+
+This is a repository for Fullstack Notion Clone using Next.js 14, React, Convex, Tailwind
+
+</div>
+
+### Key Features:
 
 - Real-time database  🔗
 - Notion-style editor 📝
@@ -25,9 +35,35 @@ Key Features:
 
 Try it out from [here](https://jotion-stell.vercel.app)
 
-## Prerequisites
+### Technology Stack
 
-### Node version 23.x.x
+- **ReactJS:** Front-end Design
+- **Tailwind:** Styling with typesafe, include dark/light mode
+- **Convex:** Store documents
+- **EdgeStore:** NoSQL database to store images and media
+- **Vercel:** Live deploy integration
+- **Github:** Version control and code management
+- **ChatGPT:** AI✨ for text generation
+
+## 📸 Screenshots
+
+<div align="center">
+
+| Interface | Description |
+|:-:|:-:|
+| ![Landing Page](screenshots/preview-1.png) | **Landing Page**<br/>Place to greet user with basic information about the app |
+| ![User Management](screenshots/preview-2.png) | **User Management**<br/>Secure and feature rich user account management |
+| ![Note Management](screenshots/preview-3.png) | **Note management**<br/>Place to store all your notes, lectures, to-do and more |
+| ![AI Text Generation](screenshots/preview-4.png) | **AI Text Generation**<br/>Do more than just writing with integrated Artifical Inteligence |
+
+</div>
+
+# Installation
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (version 20 or higher)
+- npm as package manager
 
 ## Cloning the repository
 
@@ -52,8 +88,8 @@ npm install
 ### If you want the AI button feature to be enabled, you must have a valid OpenAPI key
 
 ```js
-# Read .env.sample.local for instructions
-# This will be used for `npx convex dev`
+// Read .env.sample.local for instructions
+// This will be used for `npx convex dev`
 CONVEX_DEPLOYMENT=
 CONVEX_DEPLOY_KEY=
 NEXT_PUBLIC_CONVEX_URL=
@@ -80,3 +116,14 @@ npx convex dev
 ```shell
 npm run dev
 ```
+
+## 📄 Licence
+
+This project is licenced under the MIT Licence - see the [LICENCE](LICENSE) file for details.
+
+## 👥 Contact
+
+### Trần Minh Thuận
+
+- GitHub: [AtelierMizumi](https://github.com/AtelierMizumi)
+- Email: [thuanc177@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=SUBJECT&body=BODY&bcc=thuanc177@gmail.com)

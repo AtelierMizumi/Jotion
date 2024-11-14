@@ -1,59 +1,99 @@
-# Jotion - Webapp viết tài liệu FullStack: Next.js 14, React, Convex, Tailwind
+<div align=center>
 
-Web App quản lí và ghi chú tài liệu.
+# Ứng dụng Ghi chú Jotion
 
-Tính năng chính:
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=jotion-steel)](https://jotion-steel.vercel.app)
+![GitHub License](https://img.shields.io/github/license/AtelierMizumi/Jotion)
+[![JavaScript](https://img.shields.io/badge/Typescript-95.7%25-blue)](https://github.com/AtelierMizumi/Jotion)
+[![Javascript](https://img.shields.io/badge/Javascript-3%25-yellow)](https://github.com/AtelierMizumi/Jotion)
+[![CSS](https://img.shields.io/badge/CSS-1.3%25-purple)](https://github.com/AtelierMizumi/Jotion)
+
+Đây là kho lưu trữ cho bản sao Notion sử dụng Next.js 14, React, Convex, Tailwind
+
+</div>
+
+### Tính năng chính:
 
 - Cơ sở dữ liệu thời gian thực 🔗
 - Trình soạn thảo kiểu Notion 📝
 - Tính năng tạo văn bản bằng AI ✨
 - Chế độ Sáng và Tối 🌓
 - Tài liệu con không giới hạn 🌲
-- Thùng rác & xóa mềm 🗑️
-- Xác thực người dùng 🔐
-- Tải lên tập tin ☁️
-- Xóa tập tin 🗑️
-- Thay thế tập tin 🔧
-- Biểu tượng cho mỗi tài liệu (thay đổi theo thời gian thực) 🌠
-- Thanh bên có thể mở rộng ➡️🔀⬅️
-- Hoàn toàn tương thích với thiết bị di động 📱
-- Xuất bản ghi chú lên web 🌐
-- Thanh bên có thể thu gọn hoàn toàn ↕️
-- Trang đích 🛬
-- Ảnh bìa cho mỗi tài liệu 🖼️
-- Khôi phục tập tin đã xóa 🔄📄
+- Trash can & soft delete 🗑️
+- Authentication 🔐
+- File upload ☁️
+- File deletion 🗑️
+- File replacement 🔧
+- Icons for each document (changes in real-time) 🌠
+- Expandable sidebar ➡️🔀⬅️
+- Full mobile responsiveness 📱
+- Publish your note to the web 🌐
+- Fully collapsable sidebar ↕️
+- Landing page 🛬
+- Cover image of each document 🖼️
+- Recover deleted files 🔄📄
 
-Thử ngay tại [đây](https://jotion-steel.vercel.app)
+Try it out from [here](https://jotion-stell.vercel.app)
 
-## Yêu cầu
+### Technology Stack
 
-### Node phiên bản 23.x.x trở lên
+- **ReactJS:** Front-end Design
+- **Tailwind:** Styling with typesafe, include dark/light mode
+- **Convex:** Store documents
+- **EdgeStore:** NoSQL database to store images and media
+- **Vercel:** Live deploy integration
+- **Github:** Version control and code management
+- **ChatGPT:** AI✨ for text generation
 
-## Sao chép repository
+### Screenshots
+
+## 📸 Screenshots
+
+<div align="center">
+
+| Interface | Description |
+|:-:|:-:|
+| ![Landing Page](screenshots/preview-1.png) | **Landing Page**<br/>Place to greet user with basic information about the app |
+| ![User Management](screenshots/preview-2.png) | **User Management**<br/>Secure and feature rich user account management |
+| ![Note Management](screenshots/preview-3.png) | **Note management**<br/>Place to store all your notes, lectures, to-do and more |
+| ![AI Text Generation](screenshots/preview-4.png) | **AI Text Generation**<br/>Do more than just writing with Artifical Inteligence |
+
+</div>
+
+# Installation
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (version 20 or higher)
+- npm as package manager
+
+## Cloning the repository
 
 ```shell
 git clone https://github.com/AtelierMizumi/Jotion
 ```
 
-### Cài đặt các thư viện cần thiết
+### Install packages
 
 ```shell
 npm install
 ```
 
-### Thiết lập file môi trườn .env
+### Setup .env file
 
-### Bạn cần tạo tài khoản Convex, Clerk và Edge-Store để lấy các API key cần thiết
+### You need to create Convex, Clerk and Edge-Store account to get needed keys
 
-### Bạn cũng cần tạo JWT Template trong Clerk và cập nhật /convex/auth.config.js theo tài liệu hướng dẫn, Convex sẽ là nơi lưu trữ và liên kết các tài liệu với người dùng.
+### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
 
-### Bạn nên để trống CONVEX_DEPLOYMENT và NEXT_PUBLIC_CONVEX_URL vì hai trường này sẽ được tạo ra khi chạy
+### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
 
-### Nếu muốn nút AI chạy thì bạn cần thêm OpenAPI key
+### If you want the AI button feature to be enabled, you must have a valid OpenAPI key
 
 ```js
-# Đọc .env.sample.local để biết hướng dẫn
-# Điều này sẽ được sử dụng cho `npx convex dev`
+// Read .env.sample.local for instructions
+// This will be used for `npx convex dev`
 CONVEX_DEPLOYMENT=
 CONVEX_DEPLOY_KEY=
 NEXT_PUBLIC_CONVEX_URL=
@@ -69,14 +109,25 @@ EDGE_STORE_SECRET_KEY=
 OPENAI_API_KEY=
 ```
 
-### Thiết lập Convex để tạo sơ đồ NoSQL
+### Setup Convex to generate NoSQL schematics
 
 ```shell
 npx convex dev
 ```
 
-### Khởi động ứng dụng
+### Start the app
 
 ```shell
 npm run dev
 ```
+
+## 📄 Licence
+
+This project is licenced under the MIT Licence - see the [LICENCE](LICENSE) file for details.
+
+## 👥 Contact
+
+### Trần Minh Thuận
+
+- GitHub: [AtelierMizumi](https://github.com/AtelierMizumi)
+- Email: [thuanc177@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=SUBJECT&body=BODY&bcc=thuanc177@gmail.com)
