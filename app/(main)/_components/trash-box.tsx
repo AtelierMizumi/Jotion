@@ -12,6 +12,33 @@ import { Spinner } from "@/components/spinner";
 import { Input } from "@/components/ui/input";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 
+/**
+ * @fileoverview This file defines the TrashBox component, which displays a list of trashed documents
+ * and provides functionality to restore or permanently delete them. It includes a search input to filter
+ * the displayed documents by title.
+ */
+
+/**
+ * TrashBox component displays a list of trashed documents with options to restore or delete them.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered TrashBox component.
+ *
+ * @example
+ * <TrashBox />
+ *
+ * @remarks
+ * This component uses the following hooks:
+ * - `useRouter` for navigation.
+ * - `useParams` to access route parameters.
+ * - `useQuery` to fetch trashed documents.
+ * - `useMutation` to handle restore and delete operations.
+ *
+ * The component also includes a search input to filter documents by title.
+ *
+ * @function
+ * @name TrashBox
+ */
 export const TrashBox = () => {
   const router = useRouter();
   const params = useParams();

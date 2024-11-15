@@ -3,6 +3,28 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
 
+
+/**
+ * @file This file contains the implementation of the `restore` mutation for restoring archived documents and their children in a hierarchical document structure.
+ */
+
+/**
+ * Restores an archived document and its children recursively.
+ * 
+ * @mutation
+ * @param {object} args - The arguments for the mutation.
+ * @param {Id<"documents">} args.id - The ID of the document to restore.
+ * @param {object} ctx - The context object containing authentication and database methods.
+ * @param {function} ctx.auth.getUserIdentity - Method to get the identity of the authenticated user.
+ * @param {function} ctx.db.get - Method to get a document by ID from the database.
+ * @param {function} ctx.db.query - Method to query documents from the database.
+ * @param {function} ctx.db.patch - Method to update a document in the database.
+ * @returns {Promise<Doc<"documents">>} The restored document.
+ * @throws {Error} If the user is not authenticated.
+ * @throws {Error} If the document is not found.
+ * @throws {Error} If the user is not authorized to restore the document.
+ */
+
 export const archive = mutation({
   args: { id: v.id("documents") },
   handler: async (ctx, args) => {

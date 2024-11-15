@@ -5,6 +5,19 @@ import { BlockNoteEditor } from "@blocknote/core";
 import { SparklesIcon } from "lucide-react";
   
 // Update AIButton component
+/**
+ * @file AIButton Component
+ * 
+ * This file defines the AIButton component, which is a button that toggles the state of a floating AI toolbar.
+ * The toolbar can be in one of three states: "default", "ai", or "closed".
+ * 
+ * @component
+ * @param {Object} props - The properties object.
+ * @param {BlockNoteEditor} props.editor - The editor instance to be passed to the FloatingToolbarAi component.
+ * 
+ * @returns {JSX.Element} The rendered AIButton component.
+ */
+
 export function AIButton({ editor }: { editor: BlockNoteEditor }) {
   const [toolbarState, setToolbarState] = useState<"default" | "ai" | "closed">("closed");
   
