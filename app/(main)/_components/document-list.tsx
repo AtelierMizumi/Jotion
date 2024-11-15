@@ -17,6 +17,24 @@ interface DocumentListProps {
   data?: Doc<"documents">[];
 }
 
+/**
+ * DocumentList Component
+ * 
+ * This component renders a list of documents, allowing for nested document structures.
+ * It fetches documents based on a parent document ID and displays them with the ability to expand and collapse nested documents.
+ * 
+ * @param {Object} props - The properties object.
+ * @param {string} props.parentDocumentId - The ID of the parent document to fetch child documents.
+ * @param {number} [props.level=0] - The nesting level of the document list, used for indentation.
+ * 
+ * @returns {JSX.Element} The rendered document list component.
+ * 
+ * @component
+ * 
+ * @example
+ * // Usage example
+ * <DocumentList parentDocumentId="12345" />
+ */
 export const DocumentList = ({
   parentDocumentId,
   level = 0

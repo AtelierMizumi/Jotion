@@ -38,6 +38,27 @@ interface ItemProps {
   icon: LucideIcon;
 };
 
+/**
+ * @fileoverview This file defines the `Item` component, which represents an item in a list with various interactive features such as expanding, creating, and archiving documents.
+ * 
+ * @component
+ * @param {Object} props - The properties object.
+ * @param {string} props.id - The unique identifier for the item.
+ * @param {string} props.label - The label text for the item.
+ * @param {function} props.onClick - The function to call when the item is clicked.
+ * @param {React.ComponentType} props.icon - The icon component to display for the item.
+ * @param {boolean} props.active - Indicates if the item is active.
+ * @param {React.ReactNode} props.documentIcon - The document icon to display for the item.
+ * @param {boolean} props.isSearch - Indicates if the item is part of a search result.
+ * @param {number} [props.level=0] - The nesting level of the item.
+ * @param {function} props.onExpand - The function to call when the item is expanded.
+ * @param {boolean} props.expanded - Indicates if the item is expanded.
+ * 
+ * @returns {JSX.Element} The rendered `Item` component.
+ * 
+ * @description
+ * The `Item` component is a versatile list item that supports various interactions such as expanding/collapsing, creating new items, and archiving existing items. It uses hooks for user data, routing, and mutations for creating and archiving documents. The component also includes UI elements like icons, dropdown menus, and keyboard shortcuts.
+ */
 export const Item = ({
   id,
   label,
