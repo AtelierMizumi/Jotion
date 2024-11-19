@@ -22,7 +22,7 @@ export function AIButton({ editor }: { editor: BlockNoteEditor }) {
   const [toolbarState, setToolbarState] = useState<"default" | "ai" | "closed">("closed");
   
   const handleButtonClick = () => {
-    setToolbarState("ai");
+    setToolbarState((prevState) => (prevState === "ai" ? "closed" : "ai"));
   };
 
   const handleClose = () => {

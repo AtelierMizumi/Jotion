@@ -80,8 +80,8 @@ const Editor = ({
     }
 
     container.style.position = 'absolute';
-    container.style.left = `${rect.left + window.scrollX}px`;
-    container.style.top = `${rect.top + window.scrollY - 80}px`;
+    container.style.left = `${Math.min(rect.left + window.scrollX - 40, 180)}px`;
+    container.style.top = `${Math.min(rect.top + window.scrollY, 280)}px`;
     container.style.zIndex = '1000';
 
     const root = ReactDOM.createRoot(container!);
