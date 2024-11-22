@@ -39,6 +39,26 @@ import { ConfirmModal } from "@/components/modals/confirm-modal";
  * @function
  * @name TrashBox
  */
+/**
+ * A component that displays and manages documents in the trash.
+ * Một component hiển thị và quản lý các tài liệu trong thùng rác.
+ * 
+ * @returns A trash box interface with search functionality and document management options
+ * @returns Giao diện thùng rác với chức năng tìm kiếm và các tùy chọn quản lý tài liệu
+ * 
+ * Features/Tính năng:
+ * - Search/filter documents by title / Tìm kiếm/lọc tài liệu theo tiêu đề
+ * - Restore documents from trash / Khôi phục tài liệu từ thùng rác
+ * - Permanently delete documents / Xóa vĩnh viễn tài liệu
+ * - Navigate to document details / Điều hướng đến chi tiết tài liệu
+ * 
+ * @component
+ * 
+ * @example
+ * ```tsx
+ * <TrashBox />
+ * ```
+ */
 export const TrashBox = () => {
   const router = useRouter();
   const params = useParams();

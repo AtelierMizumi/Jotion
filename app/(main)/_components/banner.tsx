@@ -13,6 +13,20 @@ interface BannerProps {
   documentId: Id<"documents">;
 };
 
+/**
+ * Banner component that displays a trash notification with restore and delete options
+ * @component
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.documentId - The ID of the document in trash
+ * 
+ * @returns {JSX.Element} A banner with trash notification and action buttons
+ * 
+ * @example
+ * ```tsx
+ * <Banner documentId="123" />
+ * ```
+ */
 export const Banner = ({
   documentId
 }: BannerProps) => {

@@ -1,12 +1,9 @@
 "use client";
 
-import { ChevronsLeftRight } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/clerk-react";
+import { ChevronsLeftRight } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarImage
-} from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,8 +12,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+/**
+ * @component UserItem
+ * @description 
+ * This component renders a user item with a dropdown menu. The dropdown menu includes user information and a logout button.
+ * 
+ * @component UserItem
+ * @mô tả 
+ * Thành phần này hiển thị một mục người dùng với menu thả xuống. Menu thả xuống bao gồm thông tin người dùng và nút đăng xuất.
+ * 
+ * @returns {JSX.Element} The UserItem component.
+ * @returns {JSX.Element} Thành phần UserItem.
+ */
 export const UserItem = () => {
   const { user } = useUser();
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <DropdownMenu>

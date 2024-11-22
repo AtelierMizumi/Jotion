@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery } from "convex/react";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -16,6 +16,30 @@ interface DocumentIdPageProps {
   };
 }
 
+/**
+ * A component that displays and manages a document page with an editor.
+ * Một component hiển thị và quản lý trang tài liệu với trình soạn thảo.
+ *
+ * @param {Object} props - Component props | Props của component
+ * @param {Object} props.params - URL parameters | Tham số URL
+ * @param {string} props.params.documentId - The ID of the document to display | ID của tài liệu cần hiển thị
+ *
+ * @returns {JSX.Element} A document page with editor, cover image, and toolbar
+ *                       Một trang tài liệu với trình soạn thảo, ảnh bìa và thanh công cụ
+ *
+ * @description
+ * This component handles:
+ * - Dynamic loading of the editor | Tải động trình soạn thảo
+ * - Document data fetching | Lấy dữ liệu tài liệu
+ * - Content updates | Cập nhật nội dung
+ * - Loading states | Trạng thái đang tải
+ * - Not found states | Trạng thái không tìm thấy
+ *
+ * @example
+ * ```tsx
+ * <DocumentIdPage params={{ documentId: "123" }} />
+ * ```
+ */
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   const { documentId } = params; // Directly destructure documentId from params
   const [id, setId] = useState<Id<"documents"> | null>(documentId || null);

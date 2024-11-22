@@ -3,26 +3,24 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
 
-
 /**
- * @file This file contains the implementation of the `restore` mutation for restoring archived documents and their children in a hierarchical document structure.
- */
-
-/**
- * Restores an archived document and its children recursively.
+ * Archives a document and all its child documents recursively.
  * 
- * @mutation
- * @param {object} args - The arguments for the mutation.
- * @param {Id<"documents">} args.id - The ID of the document to restore.
- * @param {object} ctx - The context object containing authentication and database methods.
- * @param {function} ctx.auth.getUserIdentity - Method to get the identity of the authenticated user.
- * @param {function} ctx.db.get - Method to get a document by ID from the database.
- * @param {function} ctx.db.query - Method to query documents from the database.
- * @param {function} ctx.db.patch - Method to update a document in the database.
- * @returns {Promise<Doc<"documents">>} The restored document.
- * @throws {Error} If the user is not authenticated.
- * @throws {Error} If the document is not found.
- * @throws {Error} If the user is not authorized to restore the document.
+ * @param ctx - The Convex context object containing authentication and database access
+ * @param args - Object containing the document ID to archive
+ * @param args.id - The ID of the document to archive
+ * 
+ * @throws {Error} If user is not authenticated
+ * @throws {Error} If document is not found
+ * @throws {Error} If user is not authorized to archive the document
+ * 
+ * @returns The patched document with isArchived set to true
+ * 
+ * @remarks
+ * This mutation will:
+ * 1. Verify user authentication and ownership
+ * 2. Archive the specified document
+ * 3. Recursively archive all child documents that belong to the same user
  */
 
 export const archive = mutation({
@@ -75,6 +73,21 @@ export const archive = mutation({
   }
 })
 
+
+/**
+ * Truy vấn để lấy danh sách tài liệu trong thanh bên (sidebar)
+ * 
+ * @param args - Tham số đầu vào
+ * @param args.parentDocument - ID của tài liệu cha (không bắt buộc)
+ * 
+ * @throws Error - Ném lỗi nếu người dùng chưa xác thực
+ * 
+ * @returns Trả về một mảng các tài liệu thỏa mãn điều kiện sau:
+ * - Thuộc về người dùng hiện tại (userId)
+ * - Có parentDocument trùng với tham số đầu vào
+ * - Chưa bị lưu trữ (isArchived = false)
+ * - Được sắp xếp theo thứ tự giảm dần
+ */
 export const getSidebar = query({
   args: {
     parentDocument: v.optional(v.id("documents"))
