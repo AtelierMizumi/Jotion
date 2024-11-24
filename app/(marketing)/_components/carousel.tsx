@@ -2,6 +2,26 @@ import Image from "next/image";
 import { CheckSquare, Calendar, Bot } from "lucide-react";
 
 
+/**
+ * A carousel component that showcases different features of the note-taking application.
+ * Displays three main sections: Blocks introduction, formatting options, and AI capabilities.
+ * Includes responsive images, video, and icons with descriptive text.
+ * 
+ * @component Carousel
+ * @returns {JSX.Element} A carousel section with feature descriptions and visual content
+ * 
+ * @example
+ * ```tsx
+ * <Carousel />
+ * ```
+ * 
+ * @Vietnamese
+ * Một component carousel giới thiệu các tính năng của ứng dụng ghi chú.
+ * Hiển thị ba phần chính: Giới thiệu về Blocks, tùy chọn định dạng và khả năng AI.
+ * Bao gồm hình ảnh tương thích, video và biểu tượng kèm theo văn bản mô tả.
+ * 
+ * @returns {JSX.Element} Một phần carousel với mô tả tính năng và nội dung trực quan
+ */
 export const Carousel = () => {
   return (
     <div style={{background:"#1f1f1f", color:"white"}}>

@@ -12,6 +12,8 @@
 
 </div>
 
+[English](README.md)
+
 ### Tính năng chính:
 
 - Cơ sở dữ liệu thời gian thực 🔗

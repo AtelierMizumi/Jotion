@@ -18,6 +18,34 @@ interface EditorProps {
   editable?: boolean;
 };
 
+/**
+ * A rich text editor component with AI assistance capabilities.
+ * Một trình soạn thảo văn bản với khả năng hỗ trợ AI.
+ * 
+ * @component
+ * 
+ * @param {Object} props - Component props / Các props của component
+ * @param {string} [props.initialContent] - Initial content in JSON string format / Nội dung ban đầu ở dạng chuỗi JSON
+ * @param {function} props.onChange - Callback function triggered when content changes / Hàm callback được gọi khi nội dung thay đổi
+ * @param {boolean} [props.editable=true] - Whether the editor is editable / Xác định xem trình soạn thảo có thể chỉnh sửa hay không
+ * 
+ * @returns {JSX.Element} BlockNoteView component / Component BlockNoteView
+ * 
+ * @features
+ * - Debounced content updates (1.5s) / Cập nhật nội dung với debounce (1.5s)
+ * - Image upload support / Hỗ trợ tải lên hình ảnh
+ * - AI assistance button on text selection / Nút hỗ trợ AI khi chọn văn bản
+ * - Dark/Light theme support / Hỗ trợ giao diện tối/sáng
+ * 
+ * @example
+ * ```tsx
+ * <Editor
+ *   initialContent={savedContent}
+ *   onChange={(content) => handleContentChange(content)}
+ *   editable={true}
+ * />
+ * ```
+ */
 const Editor = ({
   initialContent,
   onChange,

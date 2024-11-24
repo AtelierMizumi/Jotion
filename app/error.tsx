@@ -5,6 +5,22 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
+/**
+ * Error component that displays when something goes wrong in the application
+ * Component lỗi được hiển thị khi có sự cố xảy ra trong ứng dụng
+ * 
+ * @component
+ * 
+ * @returns {JSX.Element} Returns an error page with:
+ * - Error images (light/dark mode)
+ * - Error message
+ * - "Go back" button linking to documents page
+ * 
+ * @trả_về {JSX.Element} Trả về trang lỗi với:
+ * - Hình ảnh lỗi (chế độ sáng/tối)
+ * - Thông báo lỗi
+ * - Nút "Quay lại" liên kết đến trang tài liệu
+ */
 const Error = () => {
   return ( 
     <div className="h-full flex flex-col items-center justify-center space-y-4">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+// This page is deprecated and will be removed in the future
 export const Heroes = () => {
   return (
     <div className="flex flex-col items-center justify-center max-w-5xl">
