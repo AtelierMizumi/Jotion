@@ -59,7 +59,7 @@ export const Heading = () => {
                   </Link>
                 </Button>
                 <Button asChild variant="ghost" style={{background: "#0582ff", color:"white", fontWeight:"bold"}}>
-                  <Link href="https://jotion-steel.vercel.app/preview/j57005j5q4vh43gzy29s6m6rg5737a8b">
+                  <Link href="/preview/j57005j5q4vh43gzy29s6m6rg5737a8b">
                     See sample
                   </Link>
                 </Button>
@@ -73,7 +73,7 @@ export const Heading = () => {
                   </Button>
                 </SignInButton>
                 <Button asChild variant="secondary" style={{background: "#0582ff", color:"white", fontWeight:"bold"}}>
-                  <Link href="https://jotion-steel.vercel.app/preview/j57005j5q4vh43gzy29s6m6rg5737a8b">
+                  <Link href="/preview/j57005j5q4vh43gzy29s6m6rg5737a8b">
                     See sample
                   </Link>
                 </Button>
