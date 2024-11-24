@@ -13,6 +13,26 @@ interface TitleProps {
   initialData: Doc<"documents">;
 };
 
+/**
+ * A component that renders an editable title with an optional icon
+ * Một component hiển thị tiêu đề có thể chỉnh sửa với biểu tượng tùy chọn
+ * 
+ * @param {Object} props - Component props / Các props của component
+ * @param {Object} props.initialData - Initial data for the title / Dữ liệu ban đầu cho tiêu đề
+ * @param {string} props.initialData._id - Document ID / ID của tài liệu
+ * @param {string} props.initialData.title - Initial title text / Văn bản tiêu đề ban đầu
+ * @param {string} props.initialData.icon - Optional icon for the title / Biểu tượng tùy chọn cho tiêu đề
+ * 
+ * @returns {JSX.Element} A title component that can be edited inline
+ *                       Một component tiêu đề có thể chỉnh sửa trực tiếp
+ *
+ * @example
+ * <Title initialData={{
+ *   _id: "123",
+ *   title: "My Document",
+ *   icon: "📄"
+ * }} />
+ */
 export const Title = ({
   initialData
 }: TitleProps) => {

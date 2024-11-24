@@ -31,6 +31,37 @@ import { DocumentList } from "./document-list";
 import { TrashBox } from "./trash-box";
 import { Navbar } from "./navbar";
 
+/**
+ * Navigation component for the application's main layout
+ * Component điều hướng cho bố cục chính của ứng dụng
+ * 
+ * @component
+ * 
+ * Features/Tính năng:
+ * - Resizable sidebar/Thanh bên có thể điều chỉnh kích thước
+ * - Collapsible navigation/Điều hướng có thể thu gọn
+ * - Responsive design for mobile/Thiết kế đáp ứng cho thiết bị di động
+ * - Document management interface/Giao diện quản lý tài liệu
+ * 
+ * States/Trạng thái:
+ * @state {boolean} isResetting - Controls transition animation/Điều khiển hoạt ảnh chuyển đổi
+ * @state {boolean} isCollapsed - Controls sidebar collapse state/Điều khiển trạng thái thu gọn của thanh bên
+ * 
+ * Refs/Tham chiếu:
+ * @ref {ElementRef<"aside">} sidebarRef - Reference to sidebar element/Tham chiếu đến phần tử thanh bên
+ * @ref {ElementRef<"div">} navbarRef - Reference to navbar element/Tham chiếu đến phần tử thanh điều hướng
+ * @ref {boolean} isResizingRef - Tracks resize operation state/Theo dõi trạng thái thao tác điều chỉnh kích thước
+ * 
+ * Callbacks/Hàm gọi lại:
+ * - resetWidth(): Resets sidebar to default width/Đặt lại chiều rộng thanh bên về mặc định
+ * - collapse(): Collapses the sidebar/Thu gọn thanh bên
+ * - handleCreate(): Creates new document/Tạo tài liệu mới
+ * - handleMouseDown(): Initiates resize operation/Khởi tạo thao tác điều chỉnh kích thước
+ * - handleMouseMove(): Handles resize dragging/Xử lý kéo điều chỉnh kích thước
+ * - handleMouseUp(): Finalizes resize operation/Hoàn tất thao tác điều chỉnh kích thước
+ * 
+ * @returns {JSX.Element} Navigation component with sidebar and navbar/Component điều hướng với thanh bên và thanh điều hướng
+ */
 export const Navigation = () => {
   const router = useRouter();
   const settings = useSettings();

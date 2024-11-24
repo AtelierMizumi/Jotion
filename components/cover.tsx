@@ -18,6 +18,22 @@ interface CoverImageProps {
   preview?: boolean;
 }
 
+/**
+ * A component that renders a cover image with optional controls for changing or removing it
+ * Một component hiển thị ảnh bìa với các điều khiển tùy chọn để thay đổi hoặc xóa nó
+ * 
+ * @param {object} props - Component props / Props của component
+ * @param {string} props.url - The URL of the cover image / URL của ảnh bìa
+ * @param {boolean} props.preview - Whether the component is in preview mode (controls are hidden) / Component có đang ở chế độ xem trước hay không (ẩn các điều khiển)
+ * 
+ * @returns {JSX.Element} A div containing the cover image and controls / Một div chứa ảnh bìa và các điều khiển
+ * 
+ * @example
+ * <Cover 
+ *   url="https://example.com/image.jpg"
+ *   preview={false}
+ * />
+ */
 export const Cover = ({
   url,
   preview,

@@ -18,27 +18,36 @@ interface DocumentListProps {
 }
 
 /**
- * DocumentList Component
- * 
- * This component renders a list of documents, allowing for nested document structures.
- * It fetches documents based on a parent document ID and displays them with the ability to expand and collapse nested documents.
- * 
- * @param {Object} props - The properties object.
- * @param {string} props.parentDocumentId - The ID of the parent document to fetch child documents.
- * @param {number} [props.level=0] - The nesting level of the document list, used for indentation.
- * 
- * @returns {JSX.Element} The rendered document list component.
+ * Component hiển thị danh sách tài liệu dưới dạng cây thư mục
  * 
  * @component
+ * @param {Object} props - Props của component
+ * @param {string} [props.parentDocumentId] - ID của tài liệu cha
+ * @param {number} [props.level=0] - Cấp độ của tài liệu trong cây (mặc định là 0)
+ * 
+ * @returns {JSX.Element} Component render danh sách tài liệu
  * 
  * @example
- * // Usage example
- * <DocumentList parentDocumentId="12345" />
+ * ```tsx
+ * <DocumentList 
+ *   parentDocumentId="123"
+ *   level={1}
+ * />
+ * ```
+ * 
+ * @description
+ * Component này:
+ * - Hiển thị danh sách tài liệu dưới dạng cây thư mục có thể mở rộng
+ * - Quản lý trạng thái mở rộng của từng tài liệu
+ * - Hiển thị skeleton loading khi đang tải dữ liệu 
+ * - Cho phép điều hướng khi click vào tài liệu
+ * - Hỗ trợ hiển thị icon và trạng thái active của tài liệu
+ * - Có thể lồng nhau với các cấp độ khác nhau
  */
 export const DocumentList = ({
   parentDocumentId,
   level = 0
-}: DocumentListProps) => {
+}: DocumentListProps): JSX.Element => {
   const params = useParams();
   const router = useRouter();
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -50,6 +59,7 @@ export const DocumentList = ({
     }));
   };
 
+  // Gọi hàm getSidebar trong cơ sở dữ liệu để lấy danh sách tài liệu con
   const documents = useQuery(api.documents.getSidebar, {
     parentDocument: parentDocumentId
   });
@@ -86,6 +96,11 @@ export const DocumentList = ({
       >
         No pages inside
       </p>
+
+{/* What is React Map?
+The standard JavaScript function is a map, which is a kind of data collection. 
+Pairs of data are saved in this place. A distinct key is mapped to each value kept in the map. 
+Because a duplicate pair is not permitted in a map, quick data searching is possible. */}
       {documents.map((document) => (
         <div key={document._id}>
           <Item

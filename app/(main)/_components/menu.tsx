@@ -22,6 +22,27 @@ interface MenuProps {
   documentId: Id<"documents">;
 };
 
+/**
+ * Component Menu hiển thị menu dropdown cho tài liệu.
+ * 
+ * @component
+ * @param {Object} props - Props của component
+ * @param {string} props.documentId - ID của tài liệu để thực hiện các thao tác
+ * 
+ * @remarks
+ * Component này bao gồm:
+ * - Nút trigger với icon 3 chấm ngang
+ * - Menu dropdown với tùy chọn xóa tài liệu
+ * - Hiển thị thông tin người chỉnh sửa cuối cùng
+ * - Menu này có thể mở rộng thể có thêm nhiều chức năng hay ho hơn tích hợp
+ * 
+ * @example
+ * ```tsx
+ * <Menu documentId="123" />
+ * ```
+ * 
+ * @returns Menu dropdown với các tùy chọn cho tài liệu
+ */
 export const Menu = ({
   documentId
 }: MenuProps) => {

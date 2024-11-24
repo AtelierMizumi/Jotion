@@ -19,6 +19,30 @@ interface PublishProps {
   initialData: Doc<"documents">
 };
 
+/**
+ * A component that handles the publishing functionality for a document.
+ * Một component xử lý chức năng xuất bản cho một tài liệu.
+ * 
+ * @component
+ * 
+ * @param {Object} props - Component props / Props của component
+ * @param {Object} props.initialData - Initial document data containing _id and isPublished status
+ *                                    Dữ liệu tài liệu ban đầu chứa _id và trạng thái isPublished
+ * 
+ * @returns {JSX.Element} A Popover component with publishing controls
+ *                       Một component Popover với các điều khiển xuất bản
+ * 
+ * @example
+ * ```tsx
+ * <Publish initialData={document} />
+ * ```
+ * 
+ * Features / Tính năng:
+ * - Publish/unpublish documents / Xuất bản/hủy xuất bản tài liệu
+ * - Copy shareable URL / Sao chép URL có thể chia sẻ
+ * - Visual feedback for publishing status / Phản hồi trực quan cho trạng thái xuất bản
+ * - Loading states during operations / Trạng thái tải trong quá trình thao tác
+ */
 export const Publish = ({
   initialData
 }: PublishProps) => {

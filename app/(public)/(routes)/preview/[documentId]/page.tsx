@@ -16,6 +16,23 @@ interface DocumentIdPageProps {
   };
 };
 
+/**
+ * Renders a preview page for a document with the specified ID.
+ * Hiển thị trang xem trước cho một tài liệu với ID được chỉ định.
+ * 
+ * @param {Object} props - Component props / Props của component
+ * @param {Object} props.params - Route parameters / Tham số đường dẫn
+ * @param {string} props.params.documentId - ID of the document to display / ID của tài liệu cần hiển thị
+ * 
+ * @returns {JSX.Element} A page component that displays:
+ * - Loading skeleton when document is undefined / Hiển thị skeleton loading khi tài liệu chưa được tải
+ * - "Not found" message when document is null / Hiển thị thông báo "Not found" khi không tìm thấy tài liệu
+ * - Document preview with cover image, toolbar and non-editable content when document is loaded
+ *   / Xem trước tài liệu với ảnh bìa, thanh công cụ và nội dung không thể chỉnh sửa khi tài liệu đã được tải
+ * 
+ * @example
+ * <DocumentIdPage params={{ documentId: "123" }} />
+ */
 const DocumentIdPage = ({
   params
 }: DocumentIdPageProps) => {

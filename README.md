@@ -12,6 +12,8 @@ This is a repository for Fullstack Notion Clone using Next.js 14, React, Convex,
 
 </div>
 
+[Tiếng Việt](VIET-README.md)
+
 ### Key Features:
 
 - Real-time database  🔗

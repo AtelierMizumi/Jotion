@@ -17,6 +17,30 @@ import {
 import { useSearch } from "@/hooks/use-search";
 import { api } from "@/convex/_generated/api";
 
+/**
+ * A component that implements a search command dialog for documents.
+ * Một component thực hiện hộp thoại lệnh tìm kiếm cho tài liệu.
+ * 
+ * Features/Tính năng:
+ * - Keyboard shortcut (Ctrl/Cmd + K) to open search/Phím tắt (Ctrl/Cmd + K) để mở tìm kiếm
+ * - Displays user's documents with icons/Hiển thị tài liệu của người dùng với biểu tượng
+ * - Navigates to selected document/Điều hướng đến tài liệu được chọn
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <SearchCommand />
+ * ```
+ * 
+ * @remarks
+ * - Uses CommandDialog from a UI component library/Sử dụng CommandDialog từ thư viện UI
+ * - Integrates with user authentication/Tích hợp với xác thực người dùng
+ * - Implements client-side routing/Thực hiện định tuyến phía client
+ * - Handles mounted state to prevent hydration issues/Xử lý trạng thái mounted để ngăn vấn đề hydration
+ * 
+ * @returns A search command dialog component or null if not mounted
+ * @returns Một component hộp thoại lệnh tìm kiếm hoặc null nếu chưa được mounted
+ */
 export const SearchCommand = () => {
   const { user } = useUser();
   const router = useRouter();

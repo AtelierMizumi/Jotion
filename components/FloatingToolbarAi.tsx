@@ -27,6 +27,31 @@ import { motion as FramerMotion } from "framer-motion";
 import { BlockNoteEditor } from "@blocknote/core";
 const motion = FramerMotion;
 
+/**
+ * A floating toolbar component that provides AI-powered text editing capabilities
+ * Thanh công cụ nổi cung cấp khả năng chỉnh sửa văn bản được hỗ trợ bởi AI
+ *
+ * @param editor - The BlockNote editor instance / Phiên bản trình soạn thảo BlockNote
+ * @param state - Current state of the toolbar ("default" | "ai" | "closed") / Trạng thái hiện tại của thanh công cụ
+ * @param setState - Function to update the toolbar state / Hàm cập nhật trạng thái thanh công cụ
+ * @param onClose - Callback function when toolbar is closed / Hàm callback khi thanh công cụ đóng
+ * 
+ * @component FloatingToolbarAi
+ * 
+ * @remarks
+ * The component manages:
+ * - AI text generation and responses / Quản lý việc tạo văn bản và phản hồi từ AI
+ * - Command panel for text operations / Bảng điều khiển cho các thao tác văn bản
+ * - Text selection and manipulation / Lựa chọn và thao tác văn bản
+ * - Message history with AI / Lịch sử tin nhắn với AI
+ * 
+ * Features include:
+ * - Text replacement / Thay thế văn bản
+ * - Inline text insertion / Chèn văn bản nội tuyến
+ * - Paragraph insertion / Chèn đoạn văn
+ * - AI conversation continuation / Tiếp tục hội thoại với AI
+ * - Response regeneration / Tạo lại phản hồi
+ */
 export function FloatingToolbarAi({
   editor,
   state,
