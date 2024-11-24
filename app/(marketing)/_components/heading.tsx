@@ -1,3 +1,27 @@
+/**
+ * A component that renders the heading section of the marketing page
+ * Một component hiển thị phần heading của trang marketing
+ * 
+ * @component
+ * 
+ * @remarks
+ * This component uses Convex authentication and Clerk for sign-in functionality
+ * Component này sử dụng xác thực Convex và Clerk cho chức năng đăng nhập
+ * 
+ * @returns JSX element containing:
+ * - Title and subtitle text
+ * - Loading spinner while authentication state is being determined
+ * - "Head to Jotion" and "See sample" buttons for authenticated users
+ * - "Get Started" sign-in button and "See sample" button for unauthenticated users
+ * - Hero illustration video
+ * 
+ * @returns JSX element bao gồm:
+ * - Văn bản tiêu đề và phụ đề
+ * - Hiển thị spinner trong khi đang xác định trạng thái xác thực
+ * - Nút "Head to Jotion" và "See sample" cho người dùng đã xác thực
+ * - Nút đăng nhập "Get Started" và nút "See sample" cho người dùng chưa xác thực
+ * - Video minh họa hero
+ */
 "use client";
 
 import { useConvexAuth } from "convex/react";
@@ -6,7 +30,6 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
-import { ColorStyleButton } from "@blocknote/react";
 
 export const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();

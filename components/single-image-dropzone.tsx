@@ -44,6 +44,39 @@ const ERROR_MESSAGES = {
   },
 };
 
+/**
+ * A component that provides a dropzone for single image upload with preview functionality.
+ * Một component cung cấp vùng thả để tải lên một hình ảnh với chức năng xem trước.
+ *
+ * @component
+ * 
+ * @param {Object} props - Component props / Các props của component
+ * @param {DropzoneOptions} [props.dropzoneOptions] - Options for the dropzone configuration / Các tùy chọn cấu hình cho vùng thả
+ * @param {number|string} [props.width] - Width of the dropzone / Chiều rộng của vùng thả
+ * @param {number|string} [props.height] - Height of the dropzone / Chiều cao của vùng thả
+ * @param {File|string} [props.value] - Current image value (can be File object or URL string) / Giá trị hình ảnh hiện tại (có thể là đối tượng File hoặc chuỗi URL)
+ * @param {string} [props.className] - Additional CSS classes / Các class CSS bổ sung
+ * @param {boolean} [props.disabled] - Whether the dropzone is disabled / Xác định vùng thả có bị vô hiệu hóa hay không
+ * @param {(file: File | undefined) => void} [props.onChange] - Callback fired when image changes / Hàm callback được gọi khi hình ảnh thay đổi
+ * 
+ * @features
+ * - Image preview / Xem trước hình ảnh
+ * - Drag and drop support / Hỗ trợ kéo và thả
+ * - File type validation / Kiểm tra loại tệp
+ * - Error messages / Thông báo lỗi
+ * - Loading state / Trạng thái đang tải
+ * - Remove image functionality / Chức năng xóa hình ảnh
+ * 
+ * @example
+ * ```tsx
+ * <SingleImageDropzone
+ *   value={imageFile}
+ *   onChange={(file) => setImageFile(file)}
+ *   width={300}
+ *   height={200}
+ * />
+ * ```
+ */
 const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
   (
     { dropzoneOptions, width, height, value, className, disabled, onChange },

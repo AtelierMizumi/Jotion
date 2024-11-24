@@ -12,6 +12,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+/**
+ * A component that renders a theme toggle dropdown menu with light, dark, and system options.
+ * Đây là một cái nút
+ * Khi bấm vào sẽ menu dropdown cho phép người dùng chọn chế độ theme 
+ * (sáng, tối, hoặc theo hệ thống).
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <ModeToggle />
+ * ```
+ * 
+ * @returns A dropdown menu with theme options
+ * @returns Menu dropdown với các tùy chọn theme
+ * 
+ * Features/Tính năng:
+ * - Toggles between light/dark/system themes
+ * - Chuyển đổi giữa các chế độ sáng/tối/hệ thống
+ * - Shows sun/moon icons based on current theme
+ * - Hiển thị biểu tượng mặt trời/mặt trăng dựa trên theme hiện tại
+ * - Accessible with screen readers
+ * - Hỗ trợ trình đọc màn hình
+ */
 export function ModeToggle() {
   const { setTheme } = useTheme()
 

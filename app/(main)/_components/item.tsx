@@ -59,6 +59,31 @@ interface ItemProps {
  * @description
  * The `Item` component is a versatile list item that supports various interactions such as expanding/collapsing, creating new items, and archiving existing items. It uses hooks for user data, routing, and mutations for creating and archiving documents. The component also includes UI elements like icons, dropdown menus, and keyboard shortcuts.
  */
+/**
+ * Component Item - Hiển thị một mục trong danh sách tài liệu
+ * @param {Object} props - Props của component
+ * @param {string} props.id - ID của tài liệu
+ * @param {string} props.label - Nhãn hiển thị của mục
+ * @param {Function} props.onClick - Hàm xử lý khi click vào mục
+ * @param {ComponentType} props.icon - Component icon mặc định
+ * @param {boolean} props.active - Trạng thái active của mục
+ * @param {ReactNode} props.documentIcon - Icon tùy chỉnh cho tài liệu
+ * @param {boolean} props.isSearch - Xác định nếu đây là mục tìm kiếm
+ * @param {number} props.level - Cấp độ thụt lề của mục (mặc định: 0)
+ * @param {Function} props.onExpand - Hàm xử lý khi mở rộng mục
+ * @param {boolean} props.expanded - Trạng thái mở rộng của mục
+ * @returns {JSX.Element} Item component
+ * 
+ * @description
+ * Component này hiển thị một mục trong danh sách tài liệu với các chức năng:
+ * - Hiển thị icon và nhãn
+ * - Thụt lề theo cấp độ
+ * - Tạo tài liệu mới (con)
+ * - Xóa tài liệu
+ * - Mở rộng/thu gọn danh sách con
+ * - Hiển thị phím tắt tìm kiếm (nếu là mục tìm kiếm)
+ * - Menu thả xuống với thông tin bổ sung
+ */
 export const Item = ({
   id,
   label,
@@ -70,7 +95,7 @@ export const Item = ({
   level = 0,
   onExpand,
   expanded,
-}: ItemProps) => {
+}: ItemProps): JSX.Element => {
   const { user } = useUser();
   const router = useRouter();
   const create = useMutation(api.documents.create);

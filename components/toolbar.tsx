@@ -17,6 +17,26 @@ interface ToolbarProps {
   preview?: boolean;
 };
 
+/**
+ * Toolbar component for document editing and customization
+ * Component thanh công cụ để chỉnh sửa và tùy chỉnh tài liệu
+ * 
+ * @component
+ * @param {Object} props - Component properties / Thuộc tính của component
+ * @param {Object} props.initialData - Initial document data including title, icon and cover image
+ *                                    Dữ liệu tài liệu ban đầu bao gồm tiêu đề, biểu tượng và ảnh bìa
+ * @param {boolean} props.preview - Whether the toolbar is in preview mode
+ *                                 Liệu thanh công cụ có đang ở chế độ xem trước hay không
+ * 
+ * @returns {JSX.Element} Toolbar component with icon picker, cover image option and editable title
+ *                       Component thanh công cụ với bộ chọn biểu tượng, tùy chọn ảnh bìa và tiêu đề có thể chỉnh sửa
+ * 
+ * Features / Tính năng:
+ * - Edit document title / Chỉnh sửa tiêu đề tài liệu
+ * - Add/remove document icon / Thêm/xóa biểu tượng tài liệu
+ * - Add cover image / Thêm ảnh bìa
+ * - Preview mode support / Hỗ trợ chế độ xem trước
+ */
 export const Toolbar = ({
   initialData,
   preview
