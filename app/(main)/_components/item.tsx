@@ -95,7 +95,7 @@ export const Item = ({
   level = 0,
   onExpand,
   expanded,
-}: ItemProps): JSX.Element => {
+}: ItemProps) => {
   const { user } = useUser();
   const router = useRouter();
   const create = useMutation(api.documents.create);
