@@ -3,14 +3,14 @@
 import { useTheme } from "next-themes";
 import ReactDOM from 'react-dom/client';
 import "@blocknote/core/fonts/inter.css";
-import { BlockNoteEditor, PartialBlock, Block } from "@blocknote/core";
+import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { AIButton } from "./ai-button";
 import { useEdgeStore } from "@/lib/edgestore";
-import { useState, useEffect, forwardRef } from "react";
+import { useEffect } from "react";
 
 interface EditorProps {
   onChange: (value: string) => void;
@@ -101,18 +101,21 @@ const Editor = ({
     const rect = range.getBoundingClientRect();
 
     let container = document.getElementById('ai-button-container');
+    let root = (window as any).__AI_BUTTON_ROOT__;
+    
     if (!container) {
       container = document.createElement('div');
       container.id = 'ai-button-container';
       document.body.appendChild(container);
+      root = ReactDOM.createRoot(container);
+      (window as any).__AI_BUTTON_ROOT__ = root;
     }
 
     container.style.position = 'absolute';
-    container.style.left = `${Math.min(rect.left + window.scrollX - 40, 180)}px`;
-    container.style.top = `${Math.min(rect.top + window.scrollY, 280)}px`;
+    container.style.left = `${Math.min(rect.left + window.scrollX - 40, 240)}px`;
+    container.style.top = `${Math.min(rect.top + window.scrollY, 140)}px`;
     container.style.zIndex = '1000';
 
-    const root = ReactDOM.createRoot(container!);
     root.render(
       <AnimatePresence>
         <motion.div

@@ -3,6 +3,8 @@
 import { useMutation, useQuery } from "convex/react";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
+import { use } from "react";
+import { notFound } from "next/navigation";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -11,46 +13,25 @@ import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface DocumentIdPageProps {
-  params: {
+  params: Promise<{
     documentId: Id<"documents">;
-  };
-};
+  }>;
+}
 
-/**
- * Renders a preview page for a document with the specified ID.
- * Hiển thị trang xem trước cho một tài liệu với ID được chỉ định.
- * 
- * @param {Object} props - Component props / Props của component
- * @param {Object} props.params - Route parameters / Tham số đường dẫn
- * @param {string} props.params.documentId - ID of the document to display / ID của tài liệu cần hiển thị
- * 
- * @returns {JSX.Element} A page component that displays:
- * - Loading skeleton when document is undefined / Hiển thị skeleton loading khi tài liệu chưa được tải
- * - "Not found" message when document is null / Hiển thị thông báo "Not found" khi không tìm thấy tài liệu
- * - Document preview with cover image, toolbar and non-editable content when document is loaded
- *   / Xem trước tài liệu với ảnh bìa, thanh công cụ và nội dung không thể chỉnh sửa khi tài liệu đã được tải
- * 
- * @example
- * <DocumentIdPage params={{ documentId: "123" }} />
- */
-const DocumentIdPage = ({
-  params
-}: DocumentIdPageProps) => {
-  const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }) ,[]);
+const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
+  // Unwrap params using React.use()
+  const resolvedParams = use(params);
+  const documentId = resolvedParams.documentId;
+
+  const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
 
   const document = useQuery(api.documents.getById, {
-    documentId: params.documentId
+    documentId: documentId as Id<"documents">
   });
 
   const update = useMutation(api.documents.update);
 
-  const onChange = (content: string) => {
-    update({
-      id: params.documentId,
-      content
-    });
-  };
-
+  // Handle loading state
   if (document === undefined) {
     return (
       <div>
@@ -67,11 +48,21 @@ const DocumentIdPage = ({
     );
   }
 
+  // Handle not found case
   if (document === null) {
-    return <div>Not found</div>
+    notFound();
   }
 
-  return ( 
+  const onChange = (content: string) => {
+    if (documentId) {
+      update({
+        id: documentId,
+        content
+      }).catch(console.error);
+    }
+  };
+
+  return (
     <div className="pb-40 dark:bg-[#1F1F1F]">
       <Cover preview url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
@@ -84,6 +75,6 @@ const DocumentIdPage = ({
       </div>
     </div>
   );
-}
- 
+};
+
 export default DocumentIdPage;

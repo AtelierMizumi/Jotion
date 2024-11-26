@@ -59,10 +59,15 @@ export const Title = ({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setTitle(event.target.value);
-    update({
-      id: initialData._id,
-      title: event.target.value || "Untitled"
-    });
+
+    const timeoutId = setTimeout(() => {
+      update({
+        id: initialData._id,
+        title: event.target.value || "Untitled"
+      });
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
   };
 
   const onKeyDown = (
