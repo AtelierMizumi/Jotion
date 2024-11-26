@@ -47,7 +47,7 @@ interface DocumentListProps {
 export const DocumentList = ({
   parentDocumentId,
   level = 0
-}: DocumentListProps): JSX.Element => {
+}: DocumentListProps) => {
   const params = useParams();
   const router = useRouter();
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
