@@ -22,12 +22,12 @@ import { Button } from "@/components/ui/button";
  * @uses useUser - To get current user information | Để lấy thông tin người dùng hiện tại
  * @uses useMutation - For creating new documents | Để tạo tài liệu mới
  * 
- * @returns {JSX.Element} A centered layout with:
+ * @returns A centered layout with:
  * - Empty state images (light/dark mode)
  * - Welcome message with user's first name
  * - Create note button
  * 
- * Trả về {JSX.Element} Một bố cục căn giữa với:
+ * Trả về một bố cục căn giữa với:
  * - Hình ảnh trạng thái trống (chế độ sáng/tối)
  * - Thông điệp chào mừng với tên của người dùng
  * - Nút tạo ghi chú

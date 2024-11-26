@@ -7,6 +7,7 @@ import { Spinner } from "@/components/spinner";
 import { SearchCommand } from "@/components/search-command";
 
 import { Navigation } from "./_components/navigation";
+import { JSX } from "react/jsx-runtime";
 
 /**
  * MainLayout component - A layout wrapper for the main application content
