@@ -132,4 +132,4 @@ This project is licenced under the MIT Licence - see the [LICENCE](LICENSE) file
 ### Trần Minh Thuận
 
 - GitHub: [AtelierMizumi](https://github.com/AtelierMizumi)
-- Email: [thuanc177@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=SUBJECT&body=BODY&bcc=thuanc177@gmail.com)
+- Email: [contact@thuanc177.me](https://mail.google.com/mail/?view=cm&fs=1&to=contact@thuanc177.me&su=SUBJECT&body=BODY&bcc=contact@thuanc177.me)
