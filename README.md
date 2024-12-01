@@ -35,7 +35,7 @@ This is a repository for Fullstack Notion Clone using Next.js 14, React, Convex,
 - Cover image of each document 🖼️
 - Recover deleted files 🔄📄
 
-Try it out from [here](https://jotion-stell.vercel.app)
+Try it out from [here](https://jotion.thuanc177.me)
 
 ### Technology Stack
 
