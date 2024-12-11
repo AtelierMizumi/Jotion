@@ -4,9 +4,9 @@
 
 [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=jotion-steel)](https://jotion-steel.vercel.app)
 ![GitHub License](https://img.shields.io/github/license/AtelierMizumi/Jotion)
-[![JavaScript](https://img.shields.io/badge/Typescript-95.7%25-blue)](https://github.com/m4tthi3u/Jotion)
-[![Javascript](https://img.shields.io/badge/Javascript-3%25-yellow)](https://github.com/m4tthi3u/Jotion)
-[![CSS](https://img.shields.io/badge/CSS-1.3%25-purple)](https://github.com/m4tthi3u/Jotion)
+[![JavaScript](https://img.shields.io/badge/Typescript-95.7%25-blue)](https://github.com/AtelierMizumi/Jotion)
+[![Javascript](https://img.shields.io/badge/Javascript-3%25-yellow)](https://github.com/AtelierMizumi/Jotion)
+[![CSS](https://img.shields.io/badge/CSS-1.3%25-purple)](https://github.com/AtelierMizumi/Jotion)
 
 This is a repository for Fullstack Notion Clone using Next.js 14, React, Convex, Tailwind
 
@@ -35,7 +35,7 @@ This is a repository for Fullstack Notion Clone using Next.js 14, React, Convex,
 - Cover image of each document 🖼️
 - Recover deleted files 🔄📄
 
-Try it out from [here](https://jotion-stell.vercel.app)
+Try it out from [here](https://jotion.thuanc177.me)
 
 ### Technology Stack
 
