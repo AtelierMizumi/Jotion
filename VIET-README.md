@@ -21,81 +21,81 @@
 - Tính năng tạo văn bản bằng AI ✨
 - Chế độ Sáng và Tối 🌓
 - Tài liệu con không giới hạn 🌲
-- Trash can & soft delete 🗑️
-- Authentication 🔐
-- File upload ☁️
-- File deletion 🗑️
-- File replacement 🔧
-- Icons for each document (changes in real-time) 🌠
-- Expandable sidebar ➡️🔀⬅️
-- Full mobile responsiveness 📱
-- Publish your note to the web 🌐
-- Fully collapsable sidebar ↕️
-- Landing page 🛬
-- Cover image of each document 🖼️
-- Recover deleted files 🔄📄
+- Thùng rác & xóa mềm 🗑️
+- Xác thực người dùng 🔐
+- Upload media ☁️
+- Xóa media 🗑️
+- Thay thế media 🔧
+- Emoji đại diện cho mỗi tài liệu 🌠
+- Thanh bên có thể mở rộng ➡️🔀⬅️
+- Tương thích hoàn toàn với thiết bị di động 📱
+- Xuất bản ghi chú lên web 🌐
+- Sidebar mở rộng & thu gọn ↕️
+- Trang chủ 🛬
+- Ảnh bìa cho mỗi tài liệu 🖼️
+- Khôi phục tập tin đã xóa 🔄📄
 
-Try it out from [here](https://jotion-stell.vercel.app)
+Dùng thử tại [đây](https://jotion-stell.vercel.app)
 
-### Technology Stack
+### Công nghệ sử dụng
 
-- **ReactJS:** Front-end Design
-- **Tailwind:** Styling with typesafe, include dark/light mode
-- **Convex:** Store documents
-- **EdgeStore:** NoSQL database to store images and media
-- **Vercel:** Live deploy integration
-- **Github:** Version control and code management
-- **ChatGPT:** AI✨ for text generation
+- **ReactJS:** Thiết kế giao diện người dùng
+- **Tailwind:** Tạo kiểu với typesafe, bao gồm chế độ sáng/tối
+- **Convex:** Lưu trữ tài liệu
+- **EdgeStore:** Cơ sở dữ liệu NoSQL để lưu trữ hình ảnh và phương tiện
+- **Vercel:** Tích hợp triển khai trực tiếp
+- **Github:** Kiểm soát phiên bản và quản lý mã nguồn
+- **ChatGPT:** AI✨ để tạo văn bản
 
-### Screenshots
+### Ảnh chụp màn hình
 
-## 📸 Screenshots
+## 📸 Ảnh chụp màn hình
 
 <div align="center">
 
-| Interface | Description |
+| Giao diện | Mô tả |
 |:-:|:-:|
-| ![Landing Page](screenshots/preview-1.png) | **Landing Page**<br/>Place to greet user with basic information about the app |
-| ![User Management](screenshots/preview-2.png) | **User Management**<br/>Secure and feature rich user account management |
-| ![Note Management](screenshots/preview-3.png) | **Note management**<br/>Place to store all your notes, lectures, to-do and more |
-| ![AI Text Generation](screenshots/preview-4.png) | **AI Text Generation**<br/>Do more than just writing with Artifical Inteligence |
+| ![Trang chủ](screenshots/preview-1.png) | **Trang chủ**<br/>Nơi chào đón người dùng với thông tin cơ bản về ứng dụng |
+| ![Quản lý người dùng](screenshots/preview-2.png) | **Quản lý người dùng**<br/>Quản lý tài khoản người dùng an toàn và đầy đủ tính năng |
+| ![Quản lý ghi chú](screenshots/preview-3.png) | **Quản lý ghi chú**<br/>Nơi lưu trữ tất cả ghi chú, bài giảng, việc cần làm và nhiều hơn nữa |
+| ![Tạo văn bản bằng AI](screenshots/preview-4.png) | **Tạo văn bản bằng AI**<br/>Làm được nhiều hơn là chỉ viết với Trí tuệ Nhân tạo |
 
 </div>
 
-# Installation
+# Cài đặt
 
-## Prerequisites
+## Yêu cầu hệ thống
 
-Before you begin, ensure you have the following installed:
+Trước khi bắt đầu, hãy đảm bảo bạn đã cài đặt:
 
-- Node.js (version 20 or higher)
-- npm as package manager
+- Node.js (phiên bản 20 trở lên)
+- npm (làm trình quản lý gói)
 
-## Cloning the repository
+## Sao chép kho lưu trữ
 
 ```shell
 git clone https://github.com/AtelierMizumi/Jotion
 ```
 
-### Install packages
+### Cài đặt các gói
 
 ```shell
 npm install
 ```
 
-### Setup .env file
+### Thiết lập tệp .env
 
-### You need to create Convex, Clerk and Edge-Store account to get needed keys
+### Bạn cần tạo tài khoản Convex, Clerk và Edge-Store để lấy các API key cần thiết
 
-### You also need to create a JWT Template in Clerk and update /convex/auth.config.js according to the doc
+### Bạn cũng cần tạo một JWT Template trong Clerk và cập nhật /convex/auth.config.js theo tài liệu hướng dẫn
 
-### You should keep CONVEX_DEPLOYMENT and NEXT_PUBLIC_CONVEX_URL empty
+### Bạn nên để trống CONVEX_DEPLOYMENT và NEXT_PUBLIC_CONVEX_URL
 
-### If you want the AI button feature to be enabled, you must have a valid OpenAPI key
+### Nếu bạn muốn kích hoạt tính năng nút AI, bạn phải có khóa OpenAPI hợp lệ
 
 ```js
-// Read .env.sample.local for instructions
-// This will be used for `npx convex dev`
+// Đọc .env.sample.local để được hướng dẫn
+// Điều này sẽ được sử dụng cho `npx convex dev`
 CONVEX_DEPLOYMENT=
 CONVEX_DEPLOY_KEY=
 NEXT_PUBLIC_CONVEX_URL=
@@ -111,23 +111,23 @@ EDGE_STORE_SECRET_KEY=
 OPENAI_API_KEY=
 ```
 
-### Setup Convex to generate NoSQL schematics
+### Thiết lập Convex để tạo sơ đồ NoSQL
 
 ```shell
 npx convex dev
 ```
 
-### Start the app
+### Khởi động ứng dụng
 
 ```shell
 npm run dev
 ```
 
-## 📄 Licence
+## 📄 Giấy phép
 
-This project is licenced under the MIT Licence - see the [LICENCE](LICENSE) file for details.
+Dự án này được cấp phép theo Giấy phép MIT - xem tệp [LICENCE](LICENSE) để biết chi tiết.
 
-## 👥 Contact
+## 👥 Liên hệ
 
 ### Trần Minh Thuận
 
