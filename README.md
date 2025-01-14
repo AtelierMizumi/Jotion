@@ -119,7 +119,7 @@ npx convex dev
 npm run dev
 ```
 
-## 📄 Licence
+## 📄 License
 
 This project is licenced under the MIT Licence - see the [LICENCE](LICENSE) file for details.
 
